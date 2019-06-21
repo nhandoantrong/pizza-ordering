@@ -1,0 +1,23 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+.footer{
+    background-color: $black-color;
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    .contact{
+        display: flex;
+        .icon{
+            @include borderRadius(2px);
+            margin-left: 15px;
+            width: 25px;
+            height: 25px;
+            background-color: rgba($color: white, $alpha: 0.2);
+            text-align: center;
+            line-height: 25px;
+            cursor: pointer;
+        }
+    }
+}

@@ -7,6 +7,7 @@ const PizzaItem = props => {
             <div className="content">
                 <img src={props.item.img} alt="pizza item" />
                 <h3>{props.item.name}</h3>
+                <button>Get It now</button>
             </div>
         </div>
     );

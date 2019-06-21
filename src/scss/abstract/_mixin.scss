@@ -20,3 +20,22 @@
     -ms-transform: translate(-50%,-50%);
     -o-transform: translate(-50%,-50%);
 }
+
+
+@mixin  twoRoundedEnd ($color, $thickness) {
+    padding: 10px 24px;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border: solid $color $thickness;
+}
+
+@mixin  borderRadius($radius) {
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
