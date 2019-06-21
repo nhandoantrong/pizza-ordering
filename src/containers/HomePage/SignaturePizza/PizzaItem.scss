@@ -1,0 +1,28 @@
+@import "../../../scss/abstract/variable";
+
+
+.pizza-item{
+    padding: $close-distance $close-distance;
+
+    .content{
+        img{
+            margin: auto;
+            width: 160px;
+            @media screen and (min-width: 321px){
+                width: 200px;
+            }
+            @media screen and (min-width:577px) {
+                width: 250px;
+            }
+        }
+        text-align: center;
+        box-shadow: 0 0 5px rgb(105, 105, 105);
+        padding-bottom: $close-distance;
+        h3{
+            font-size: 1.1rem;
+            padding: 5px;
+            height: 2.8rem;
+        }
+    }
+
+}

@@ -1,0 +1,13 @@
+@import "../../../scss/abstract/variable";
+
+
+.signature-pizza{
+    padding-top: $normal-distance;
+    padding-bottom: $normal-distance;
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    h1{
+        text-align: center;
+    }
+}

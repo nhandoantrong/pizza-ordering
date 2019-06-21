@@ -1,0 +1,8 @@
+.curtain{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    @include backgroundWithOpacity(black, 0.5);
+    z-index: 0;   
+}
