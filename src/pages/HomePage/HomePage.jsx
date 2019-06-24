@@ -3,7 +3,12 @@ import "./HomePage.scss";
 import { Link as ScrollLink } from "react-scroll"
 import SignaturePizza from './SignaturePizza/SignaturePizza';
 
-const HomePage = () => {
+const HomePage = props => {
+
+    const handleChangePage = (page) =>{
+        props.history.push(page);
+    }
+
     return (
         <section className="home-page">
             <div className="carousel">
@@ -11,14 +16,14 @@ const HomePage = () => {
                 <div className="content">
                     <h1>TASTE THE MYTH</h1>
                     <h2>Try and stop at just one slice.</h2>
-                    <button>GET YOUR PIZZA NOW</button>
+                    <button onClick={()=>handleChangePage("/menu")}>GET YOUR PIZZA NOW</button>
                 </div>
                 <div className="scroll-down">
                     <ScrollLink to="home-welcome" spy={true}
                         smooth={true}
                         offset={-60}
                         duration={500}>
-                        <i class="fas fa-angle-down"></i>
+                        <i className="fas fa-angle-down"></i>
 
                     </ScrollLink>
                 </div>
@@ -32,7 +37,7 @@ const HomePage = () => {
                         <h1>Welcome to Dev's Pizza</h1>
                         <p>Our chefs are working 24/7 and are ready to accept visitors and at any time of the day and night
                     </p>
-                        <button>View all of the pizza</button>
+                        <button onClick={()=>handleChangePage("/menu")} >View all of the pizza</button>
                     </div>
                 </div>
             </div>

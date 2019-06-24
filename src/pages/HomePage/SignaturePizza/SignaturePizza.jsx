@@ -1,7 +1,7 @@
 import React from 'react';
 import "./SignaturePizza.scss"
 import Slider from "react-slick"
-import PizzaItem from './PizzaItem';
+import PizzaItem from '../../../components/PizzaItem/PizzaItem';
 
 const SignaturePizza = () => {
     const settings = {

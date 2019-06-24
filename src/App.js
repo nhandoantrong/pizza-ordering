@@ -4,7 +4,7 @@ import CustomerTemplate from './templates/CustomerTemplate';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" >
       <CustomerTemplate />
     </div>
   );

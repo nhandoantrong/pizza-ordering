@@ -1,5 +1,5 @@
-@import "../../../scss/abstract/variable";
-@import "../../../scss/abstract/mixin";
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
 
 .pizza-item {
   padding: $close-distance $close-distance;
@@ -34,7 +34,8 @@
       @include transitionAll(0.15s);
       cursor: pointer;
       &:hover {
-        background-color: $primary-color-lighter;
+        background-color: $primary-color;
+        color: white;
       }
     }
   }

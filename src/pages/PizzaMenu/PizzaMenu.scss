@@ -1,0 +1,24 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/component/col";
+
+.pizza-menu{
+    padding: $close-distance $normal-distance;
+    min-height:calc(100vh - 60px);
+    h1{
+        margin-bottom: $normal-distance;
+    }
+    .group-type{
+        display: flex;
+        h3{
+            color: $primary-color;
+            cursor: pointer;
+            padding: $close-distance $normal-distance;
+            padding-left: 0;
+            &.active{
+                border-bottom: none;
+            }
+        }
+
+
+    }
+}

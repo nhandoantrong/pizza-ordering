@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 
 
@@ -12,30 +12,35 @@ const Header = () => {
 
     return (
         <header className="header" >
-            
-            <div className="logo">
+
+            <Link className="logo" to="/">
                 <img src={logo} alt="" />
                 <span>Dev's Pizza</span>
+            </Link>
+
+            <div className="shopping-cart-icon" style={{marginLeft:"auto", marginRight:"15px"}}>
+                <i className="fas fa-shopping-cart"></i>
             </div>
+
             <div className="navigator">
                 <div className={`icon ${showMenu ? "active" : ""}`} onClick={handleToggleMenu}>
-                    <i class={`fas fa-bars ${!showMenu ? "active" : ""}`}></i>
-                    <i class={`fas fa-times ${showMenu ? "active" : ""}`}></i>
+                    <i className={`fas fa-bars ${!showMenu ? "active" : ""}`}></i>
+                    <i className={`fas fa-times ${showMenu ? "active" : ""}`}></i>
                 </div>
                 <div className={`content ${showMenu ? "active" : ""}`}>
-                    <div className="item">
+                    <Link className="item" to="/">
                         HOME
-                    </div>
-                    <div className="item">
+                    </Link>
+                    <Link className="item" to="/menu">
                         MENU
-                    </div>
-                    <div className="item">
+                    </Link>
+                    <a href="/" className="item">
                         PROMOTION
-                    </div>
-                    <div className="item">
+                    </a>
+                    <a href="/" className="item">
                         LOG IN
-                    </div>
-             
+                    </a>
+
                 </div>
             </div>
         </header>
