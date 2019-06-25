@@ -5,10 +5,20 @@
     background-color: $black-color;
     color: white;
     padding: 20px 30px;
-    display: flex;
     justify-content: space-between;
-    .contact{
+    text-align: center;
+    @media screen and (min-width : 577px){
         display: flex;
+
+    }
+    .contact{
+        display: flex;  
+        justify-content: center;
+        margin-top: $close-distance;
+        @media screen and (min-width : 577px){
+            display: flex;
+            margin: 0;
+        }
         .icon{
             @include borderRadius(2px);
             margin-left: 15px;

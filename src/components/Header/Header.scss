@@ -1,3 +1,7 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+
 .header {
   padding: $closer-distance $close-distance;
   background-color: $primary-color-dark;
