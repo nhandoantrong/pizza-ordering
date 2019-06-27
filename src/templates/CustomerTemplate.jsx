@@ -2,15 +2,19 @@ import React from 'react';
 import { BrowserRouter as Router } from "react-router-dom"
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import PopupPizzaInfo from '../components/PopupPizzaInfo/PopupPizzaInfo';
 import CustomerRoute from '../routes/CustomerRoute/CustomerRoute';
+import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
+import InfoModalContainer from '../containers/ModalContainer/InfoModalContainer';
 const CustomerTemplate = () => {
     return (
-        <Router >
-            <Header />
-            <CustomerRoute />
-            {/* <PopupPizzaInfo isOpen={true}/> */}
-            <Footer />
+        <Router onUpdate={() => window.scrollTo(0, 0)} >
+            <ScrollToTop>
+                <Header />
+                <CustomerRoute />
+                <InfoModalContainer />
+                <Footer />
+            </ScrollToTop>
+
         </Router>
     );
 };

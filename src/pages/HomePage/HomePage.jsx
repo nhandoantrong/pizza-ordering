@@ -7,6 +7,7 @@ const HomePage = props => {
 
     const handleChangePage = (page) =>{
         props.history.push(page);
+        window.scrollTo(0,0);
     }
 
     return (

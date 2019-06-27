@@ -1,21 +1,76 @@
-import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import React, {Component} from 'react';
+import Modal from 'react-responsive-modal';
 import "./PopupPizzaInfo.scss";
 
-const PopupPizzaInfo = ({isOpen=false}) => {
+const PopupPizzaInfo = ({
+    isOpen = false,
+    info = {},
+    closeModal = () => { }
+}) => {
+    const closeOnOverlayClick = () => {
+        closeModal();
+    }
+
+    
+
+    const { choices } = info;
+
+
+    const filterByAttribute = (attr) => {
+        if (choices)
+            return [...new Set(choices.map(choice => choice[attr]))];
+        return []
+    }
+
+    const renderAttribute = (attr) => {
+        return filterByAttribute(attr).map(choice => {
+            return <option value={choice} key={choice}>{choice}</option>
+        })
+    }
+
     return (
-        <div>
-            <Modal isOpen={isOpen} >
-                <ModalHeader >Modal title</ModalHeader>
-                <ModalBody>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" >Do Something</Button>{' '}
-                    <Button color="secondary" >Cancel</Button>
-                </ModalFooter>
-            </Modal>
-        </div>
+
+        <Modal open={isOpen}
+            onOverlayClick={closeOnOverlayClick}
+            animationDuration={100}
+            center={true}
+            blockScroll={false}
+            onClose={() => { closeModal() }}
+            styles={{ closeButton: { cursor: "pointer" } }}
+        >
+            <div className="modal-content">
+                <h1>{info.name}</h1>
+                <div className="pizza-info">
+                    <div className="pizza-pic">
+                        <img src={info.picture} alt="" />
+                    </div>
+                    <div className="info-content">
+                        <p>{info.detail}</p>
+                        <div className="choice">
+                            <div className="selection">
+                                <label htmlFor="size">Size: </label>
+                                <select name="size" id="size"  >
+                                    {renderAttribute("size")}
+                                </select>
+                            </div>
+
+                            <div className="selection">
+                                <label htmlFor="crust">Crust Type:</label>
+                                <select name="crust" id="crust">
+                                    {renderAttribute("type")}
+
+                                </select>
+                            </div>
+                        </div>
+                        <div className="submit-line">
+                            <div className="price">
+                            </div>
+                            <button>ADD TO CART</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </Modal>
     );
 };
 

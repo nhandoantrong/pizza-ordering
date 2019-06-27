@@ -1,60 +1,81 @@
-import React, { useState, Fragment } from 'react';
+import React, {  Component } from 'react';
 import "./PizzaMenu.scss";
-import PizzaItem from '../../components/PizzaItem/PizzaItem';
-import data from "../../mockupData/pizza.json";
-import MediaQuery from 'react-responsive';
-import { smallScreenWidth, mediumScreenWidth } from "../../util/screenWidthConstant"
+import PizzaListContainer from '../../containers/PizzaListContainer/PizzaListContainer';
 
-const PizzaMenu = () => {
-    const [pizzaType, setPizzaType] = useState("traditionalPizza");
-
-    const changePizzaType = (type) => {
-        setPizzaType(type);
+import {connect} from "react-redux"
+import {getCategoryFromServer} from "../../store/actions/CategoryAction";
+import {filterProduct} from './FilterProduct'
+class PizzaMenu extends Component {
+    state ={
+        currentTypeIndex: 0,
+        categories: []
     }
 
-    const renderPizza = (type) => {
-        return data[type].map((item, index) => {
-            return <Fragment key={index}>
-                <MediaQuery  maxDeviceWidth={smallScreenWidth-1}>
-                    <div className="col-12">
-                        <PizzaItem item={item} />
-                    </div>
-                    
-                </MediaQuery>
-                <MediaQuery minDeviceWidth={smallScreenWidth} maxDeviceWidth={mediumScreenWidth-1}>
-                    <div className="col-6">
-                        <PizzaItem item={item} />
-                    </div>
-                    
-                </MediaQuery>
-                <MediaQuery minDeviceWidth={mediumScreenWidth}>
-                    <div className="col-4">
-                        <PizzaItem item={item} />
-                    </div>
-                </MediaQuery>
-            </Fragment>
+    componentDidMount(){
+        if (this.props.categories.length===0)
+            this.props.getCategoryFromServer();
+        else this.setState({
+            categories: this.props.categories
         })
     }
 
-    return (
-        <div className="pizza-menu">
-            <div className="liar"></div>
-            <div className="container">
-                <h1>Pizza Menu</h1>
-                <div className="group-type">
-                    <h3 className="active" onClick={() => changePizzaType("traditionalPizza")} >Traditional </h3>
-                    <h3 onClick={() => changePizzaType("deluxePizza")}>Deluxe </h3>
-                    <h3 onClick={() => changePizzaType("seafoodPizza")}>Gourmet Seafood </h3>
+    componentWillReceiveProps(nextProps){
+        this.setState({
+            categories: nextProps.categories
+        })
+    }
+    
 
-                </div>
-                <div className="pizza-menu-list">
-                    <div className="row">
-                        {renderPizza(pizzaType)}
+    renderCategoryName = () =>{
+        return this.state.categories.map((categories,index)=>{
+            return <h3 key={categories._id} onClick={()=>{this.handleChangeCategories(index)}} >{categories.name}</h3>
+        })
+    }
+
+    handleChangeCategories = (index) =>{
+        this.setState({
+            currentTypeIndex:index
+        })
+    }
+
+    renderPizzaList = ()=>{
+        const {categories,currentTypeIndex} = this.state;
+        
+        if (categories.length===0)
+            return null
+        const fullArray=categories[currentTypeIndex].productID;
+        const pizzaArray=filterProduct(fullArray);
+        return <PizzaListContainer pizzaArray={pizzaArray}/>
+    }
+
+
+    render() {  
+        return (
+            <div className="pizza-menu">
+                <div className="liar"></div>
+                <div className="container">
+                    <h1>Pizza Menu</h1>
+                    <div className="group-type">
+                        {this.renderCategoryName()}
+                    </div>
+                    <div className="pizza-menu-list">
+                        {this.renderPizzaList()}
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
+
 };
 
-export default PizzaMenu;
+const mapStateToProps =state =>({
+    categories: state.categories.categories
+})
+
+const mapDispatchToProps =dispatch =>({
+    getCategoryFromServer: ()=>{
+        dispatch(getCategoryFromServer());
+    }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PizzaMenu);
