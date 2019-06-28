@@ -8,7 +8,9 @@ $primary-color-lighter: #F8CB32;
 
 
 $black-color: #020003;
-
+$grey-border-color: #DADCE0;
+$error-color-light: #FFD2D2;
+$error-color :#D8000C;
 
 
 // font size variable
@@ -20,6 +22,8 @@ $title-font-size: 1.25rem;
 $big-title-font-size: 2.25rem;
 
 $logo-font-size: 2rem;
+
+$small-font-size: 0.75rem;
 
 
 
@@ -41,3 +45,12 @@ $big-screen-width : 930px;
 $light-weight : 100;
 $normal-weight : 300;
 $bold-weight : 700;
+
+// component-width-relatively
+$width-100 : 100%;
+$width-90 : 90%;
+$width-50 :50%;
+$width-20 : 20%;
+
+//component-width-absolutly
+$width-5 : 500px

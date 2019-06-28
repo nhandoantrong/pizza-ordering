@@ -44,13 +44,18 @@
       }
     }
     .submit-line {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .price{
+        padding-right: $close-distance;
+      }
       button {
         @include twoRoundedEnd($primary-color-lighter, 2px);
         font-weight: $bold-weight;
         cursor: pointer;
         background-color: unset;
         display: block;
-        margin: 0 auto;
         @include transitionAll(0.15s);
         &:hover {
           background-color: $primary-color-lighter;

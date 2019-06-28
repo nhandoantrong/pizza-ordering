@@ -38,9 +38,9 @@ const Header = () => {
                     <a href="/" className="item">
                         PROMOTION
                     </a>
-                    <a href="/" className="item">
-                        LOG IN
-                    </a>
+                    <Link to="/register" className="item">
+                        REGISTER
+                    </Link>
 
                 </div>
             </div>

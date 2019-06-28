@@ -9,10 +9,14 @@
 @import 'abstract/function.scss';
 @import 'abstract/animation.scss';
 
-@import 'component/_button.scss';
+@import 'component/button.scss';
 @import "component/curtain";
 @import "component/liar";
 @import "component/col";
+@import "component/input";
+
+
+@import "pages/userEntry";
 
 @import "~slick-carousel/slick/slick.css"; 
 @import "~slick-carousel/slick/slick-theme.css";

@@ -1,0 +1,35 @@
+.user-entry{
+    width: 90%;
+    max-width: $width-5;
+    margin:  auto;
+    
+    min-height: calc(100vh - 60px);
+    .content{
+        margin-top: $normal-distance;
+        padding: $close-distance;
+        box-shadow: 0 0 5px black;
+    }
+    h1{
+        text-align: center;
+        margin-bottom: $normal-distance;
+    }
+    .submit-line{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a{
+            padding-left: $closer-distance;
+            font-size: 0.75rem;
+        }
+        button{
+            @include twoRoundedEnd($primary-color-lighter,2px);
+            background-color: unset;
+            font-weight: $bold-weight;
+            cursor: pointer;
+            transition: 0.15s all ease;
+            &:hover{
+                background-color: $primary-color-lighter;
+            }
+        }
+    }
+}

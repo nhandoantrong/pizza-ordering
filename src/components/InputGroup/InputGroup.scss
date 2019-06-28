@@ -1,0 +1,67 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+.input-group {
+  margin-bottom: $normal-distance;
+  .input {
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+    position: relative;
+  }
+  label {
+    padding: 0 $closer-distance;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: $close-distance;
+    transform: translateY(-50%);
+
+    background-color: #fff;
+    transition: all 0.15s ease;
+  }
+  input {
+    font-size: 1rem;
+    padding: $close-distance $normal-distance;
+    border-radius: 3px;
+    border: 2px $grey-border-color solid;
+    width: 100%;
+    transition: all 0.15s ease;
+
+    &.active {
+      & ~ label {
+        font-size: 0.75rem;
+        font-weight: $bold-weight;
+        transform: translateY(-200%);
+      }
+    }
+    &:focus {
+      border: 2px $primary-color-lighter solid;
+      & ~ label {
+        font-size: 0.75rem;
+        font-weight: $bold-weight;
+        transform: translateY(-200%);
+
+        color: $primary-color-lighter;
+      }
+    }
+    &.error {
+      border: 2px $error-color solid;
+
+      & ~ label {
+        font-size: 0.75rem;
+        font-weight: $bold-weight;
+        transform: translateY(-200%);
+        color: $error-color;
+      }
+    }
+  }
+
+  & > .error {
+    color: $error-color;
+    background-color: $error-color-light;
+    font-size: $small-font-size;
+    padding: $closer-distance;
+  }
+}
