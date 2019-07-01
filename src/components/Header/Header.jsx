@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import "./Header.scss";
+import { connect } from "react-redux";
 
-
-const Header = () => {
+const Header = ({ orderList }) => {
     const [showMenu, setShowMenu] = useState(false);
 
     const handleToggleMenu = () => {
         setShowMenu(!showMenu);
+    }
+    const closeMenu = () => {
+        setShowMenu(false);
     }
 
     return (
@@ -19,9 +22,11 @@ const Header = () => {
                 <span>Dev's Pizza</span>
             </Link>
 
-            <div className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
+             <Link onClick={closeMenu} to="/shopping-cart" className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
                 <i className="fas fa-shopping-cart"></i>
-            </div>
+                {orderList.length> 0 ? <div>{orderList.length}</div>: null}
+
+            </Link> 
 
             <div className="navigator">
                 <div className={`icon ${showMenu ? "active" : ""}`} onClick={handleToggleMenu}>
@@ -29,20 +34,20 @@ const Header = () => {
                     <i className={`fas fa-times ${showMenu ? "active" : ""}`}></i>
                 </div>
                 <div className={`content ${showMenu ? "active" : ""}`}>
-                    <Link className="item" to="/">
+                    <Link className="item" to="/" onClick={handleToggleMenu}>
                         HOME
                     </Link>
-                    <Link className="item" to="/menu">
+                    <Link className="item" to="/menu" onClick={handleToggleMenu}>
                         MENU
                     </Link>
-                    <Link to="/" className="item">
+                    <Link to="/" className="item" onClick={handleToggleMenu}>
                         PROMOTION
                     </Link>
 
-                    <Link to="/login" className="item">
+                    <Link to="/login" className="item" onClick={handleToggleMenu}>
                         LOGIN
                     </Link>
-                    <Link to="/register" className="item">
+                    <Link to="/register" className="item" onClick={handleToggleMenu}>
                         REGISTER
                     </Link>
                 </div>
@@ -51,4 +56,7 @@ const Header = () => {
     );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+    orderList: state.order.orderList
+})
+export default connect(mapStateToProps)(Header);

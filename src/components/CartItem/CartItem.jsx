@@ -1,38 +1,44 @@
-import React from 'react';
+import React, {useState} from 'react';
 import "./CartItem.scss"
-const CartItem = ({ picture }) => {
+const CartItem = ({ product }) => {
+    const [quantity, setQuantity] = useState(1);
+
+    const changeQuantity = (number) =>{
+        setQuantity(quantity+number);
+    }
+
     return (
         <div className="cart-item">
             <div className="picture">
-                <img src="https://thepizzacompany.vn/242-home_default/hawaii.jpg" alt="cart-item" />
+                <img src={product.picture} alt="cart-item" />
             </div>
             <div className="content">
-                <h3>Double Pepperoni</h3>
+                <h3>{product.name}</h3>
                 <div className="pizza-type-size">
                     <div>
-                        Size: M
+                        Size: {product.size}
                     </div>
                     <div>
-                        Crust: Thick
+                        Crust: {product.type}
                     </div>
                 </div>
                 <div className="quantity">
-                    <div className="change minus">
+                    <div className="change minus"onClick={()=>changeQuantity(-1)}>
                         -
                     </div>
                     <div className="number">
-                        1
+                        {quantity}
                     </div>
-                    <div className="change plus">
+                    <div className="change plus" onClick={()=>changeQuantity(1)}>
                         +
                     </div>
                 </div>
                 <div className="price">
-                    $30
+                    ${product.price*quantity}
                 </div>
             </div>
             <div className="delete-button">
-                <i class="fas fa-times"></i>
+                <i className="fas fa-times"></i>
             </div>
         </div>
     );
