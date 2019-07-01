@@ -17,7 +17,7 @@
     top: 50%;
     left: $close-distance;
     transform: translateY(-50%);
-
+    cursor: text;
     background-color: #fff;
     transition: all 0.15s ease;
   }

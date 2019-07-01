@@ -5,7 +5,6 @@ export const getCategoryFromServer = ()=>{
 
     return dispatch =>{
         getCategoriesAPI().then(res=>{
-            console.log(res);
             dispatch(getCategories(res.data));
         })
         .catch(console.log)

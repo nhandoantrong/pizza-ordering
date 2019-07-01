@@ -1,0 +1,14 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+
+.shopping-cart-page{
+    @include fullscreen();
+    width: 90%;
+    max-width: 900px;
+    margin: 0 auto;
+    h1{
+        text-align: center;
+        margin-bottom: $normal-distance;
+    }
+}

@@ -19,7 +19,7 @@ const Header = () => {
                 <span>Dev's Pizza</span>
             </Link>
 
-            <div className="shopping-cart-icon" style={{marginLeft:"auto", marginRight:"15px"}}>
+            <div className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
                 <i className="fas fa-shopping-cart"></i>
             </div>
 
@@ -35,13 +35,16 @@ const Header = () => {
                     <Link className="item" to="/menu">
                         MENU
                     </Link>
-                    <a href="/" className="item">
+                    <Link to="/" className="item">
                         PROMOTION
-                    </a>
+                    </Link>
+
+                    <Link to="/login" className="item">
+                        LOGIN
+                    </Link>
                     <Link to="/register" className="item">
                         REGISTER
                     </Link>
-
                 </div>
             </div>
         </header>

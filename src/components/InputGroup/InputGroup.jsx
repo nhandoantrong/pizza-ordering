@@ -1,6 +1,6 @@
 import React from 'react';
 import "./InputGroup.scss";
-const InputGroup = ({ field, type, labelContent, error, touched }) => {
+const InputGroup = ({ field={}, type, labelContent, error, touched }) => {
 
 
     const inputClassname = () => {

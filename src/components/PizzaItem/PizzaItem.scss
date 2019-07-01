@@ -25,7 +25,10 @@
       font-size: 1.1rem;
       padding: 5px;
       height: 2.8rem;
+    }
+    .rating{
       margin-bottom: $close-distance;
+      color: $primary-color-lighter
     }
     button {
       @include twoRoundedEnd($primary-color, 2px);

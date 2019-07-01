@@ -1,0 +1,69 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+.cart-item{
+    display: flex;
+    padding: $close-distance;
+    box-shadow: 0 0 5px $black-color;
+    position: relative;
+    margin-bottom: $normal-distance;
+    .picture{
+        padding: $closer-distance;
+        box-shadow: 0 0 5px $grey-border-color;
+        margin-right: $normal-distance;
+        max-width: 25%;
+        display: flex;
+        align-items: center;
+        img{
+            width: 100%;
+        }
+    }
+    .content{
+        width: 100%;w
+        .pizza-type-size{
+            display: flex;
+            margin : $close-distance 0;
+            div{
+                margin-right: $normal-distance
+            }
+        }
+    }
+    .quantity{
+        display: inline-flex;
+        align-items: center;
+        border-radius: 5px;
+        overflow: hidden;
+        margin: $close-distance 0;
+    
+        .change{
+            padding: $closer-distance $close-distance;
+            color: white;
+            font-weight: $bold-weight;
+            cursor: pointer;
+            &.minus{
+                background-color: $black-color;
+            }
+            &.plus{
+                background-color: $primary-color;
+            }
+        }
+        .number{
+            
+            padding: ($closer-distance - 1) $close-distance;
+            border-top: 1px $grey-border-color solid;
+            border-bottom: 1px $grey-border-color solid;
+
+        }
+    }
+    .price{
+        text-align: right;
+        font-weight: $bold-weight;
+        font-size: $title-font-size;
+    }
+
+    .delete-button{
+        position: absolute;
+        right: $close-distance;
+        cursor: pointer;
+    }
+}

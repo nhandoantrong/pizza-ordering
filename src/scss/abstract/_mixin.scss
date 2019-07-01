@@ -1,41 +1,57 @@
 @mixin transitionAll($time) {
-    transition: $time all ease;
-    -webkit-transition: $time all ease;
-    -moz-transition: $time all ease;
-    -ms-transition: $time all ease;
-    -o-transition: $time all ease;
+  transition: $time all ease;
+  -webkit-transition: $time all ease;
+  -moz-transition: $time all ease;
+  -ms-transition: $time all ease;
+  -o-transition: $time all ease;
 }
 
-@mixin backgroundWithOpacity ($color, $alpha) {
-    background-color: rgba($color: $color, $alpha : $alpha);
+@mixin backgroundWithOpacity($color, $alpha) {
+  background-color: rgba($color: $color, $alpha: $alpha);
 }
 
 @mixin centerAbsolute {
-    position: absolute;
-    top: 50%;
-    left:  50%;
-    transform: translate(-50%,-50%);
-    -webkit-transform: translate(-50%,-50%);
-    -moz-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-    -o-transform: translate(-50%,-50%);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
 }
 
-
-@mixin  twoRoundedEnd ($color, $thickness) {
-    padding: 10px 24px;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    -ms-border-radius: 30px;
-    -o-border-radius: 30px;
-    border: solid $color $thickness;
+@mixin imgResponsive {
+  margin: auto;
+  width: 160px;
+  cursor: pointer;
+  @media screen and (min-width: 321px) {
+    width: 200px;
+  }
+  @media screen and (min-width: 577px) {
+    width: 250px;
+  }
 }
 
-@mixin  borderRadius($radius) {
-    border-radius: $radius;
-    -webkit-border-radius: $radius;
-    -moz-border-radius: $radius;
-    -ms-border-radius: $radius;
-    -o-border-radius: $radius;
+@mixin twoRoundedEnd($color, $thickness) {
+  padding: 10px 24px;
+  border-radius: 30px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+  border: solid $color $thickness;
+}
+
+@mixin borderRadius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
+@mixin fullscreen {
+    min-height: calc(100vh - 60px);
+    
 }
