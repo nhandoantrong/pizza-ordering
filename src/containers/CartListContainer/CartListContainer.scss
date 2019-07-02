@@ -1,0 +1,21 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+.cart-list {
+  .confirmation {
+    display: flex;
+    margin-bottom: $normal-distance;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      @include twoRoundedEnd($primary-color-lighter, 2px);
+      @include transitionAll(0.15s);
+      font-weight: $bold-weight;
+      background-color: unset;
+      cursor: pointer;
+      &:hover {
+        background-color: $primary-color-lighter;
+      }
+    }
+  }
+}

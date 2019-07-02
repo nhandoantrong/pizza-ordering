@@ -1,11 +1,12 @@
-import React, {  Fragment } from 'react';
+import React, { Fragment } from 'react';
 import "./CartItem.scss"
 import MediaQuery from "react-responsive";
 import { smallScreenWidth } from "../../util/screenWidthConstant"
-const CartItem = ({ product, toppingList,quantity }) => {
-    
-    console.log(toppingList);
-    
+const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder }) => {
+
+    const toppingPrice = toppingList.reduce((previousValue, topping) => {
+        return previousValue + topping.price
+    }, 0)
 
     return (
         <div className="cart-item">
@@ -34,7 +35,7 @@ const CartItem = ({ product, toppingList,quantity }) => {
                                         {topping.name}
                                     </div>
                                 </MediaQuery>
-                                <MediaQuery maxDeviceWidth={smallScreenWidth+1}>
+                                <MediaQuery maxDeviceWidth={smallScreenWidth + 1}>
                                     <div className="col-6" key={topping._id}>
                                         {topping.name}
                                     </div>
@@ -48,21 +49,14 @@ const CartItem = ({ product, toppingList,quantity }) => {
                 </div>
 
                 <div className="quantity">
-                    <div className="change minus" >
-                        -
-                    </div>
-                    <div className="number">
-                        {quantity}
-                    </div>
-                    <div className="change plus" >
-                        +
-                    </div>
+                    Quantity: {quantity}
                 </div>
+
                 <div className="price">
-                    ${product.price * quantity}
+                    ${(product.price + toppingPrice) * quantity}
                 </div>
             </div>
-            <div className="delete-button">
+            <div className="delete-button" onClick={() => { deleteOrder(orderID) }}>
                 <i className="fas fa-times"></i>
             </div>
         </div>

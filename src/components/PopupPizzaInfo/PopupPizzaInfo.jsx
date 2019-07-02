@@ -94,7 +94,6 @@ class PopupPizzaInfo extends Component {
         const toppingPrice = this.state.toppingChoices.reduce((previousValue, topping) => {
             return previousValue + topping.price
         }, 0)
-        console.log(this.state.choice)
         return (
             <Modal open={isOpen}
                 onOverlayClick={this.closeOnOverlayClick}

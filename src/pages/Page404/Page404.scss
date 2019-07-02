@@ -1,0 +1,22 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+.page-not-found{
+    @include fullscreen();
+    text-align: center;
+    *{
+        margin: $normal-distance
+    }
+    button{
+        @include twoRoundedEnd($primary-color-lighter,2px);
+        @include transitionAll(0.15s);
+        font-weight: $bold-weight;
+        background-color: #fff;
+        cursor: pointer;
+
+        &:hover{
+            background-color: $primary-color-lighter;
+        }
+    }
+}
+
