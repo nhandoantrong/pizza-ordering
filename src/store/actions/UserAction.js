@@ -14,6 +14,7 @@ export const registerToServer = (userRegister) => {
                     if (!token){
                         throw res.data.err;
                     }
+                
                     dispatch(register(token));
 
                 })
@@ -62,4 +63,11 @@ const loginError = (err,email,password) =>({
     err,
     email,
     password
+})
+
+
+export const changeDeliveryInfo = (address, phone) =>({
+    type: types.CHANGE_DELIVERY_INFO,
+    address,
+    phone
 })

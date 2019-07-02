@@ -2,6 +2,8 @@ import React from 'react';
 import { withFormik, Field } from "formik"
 import InputGroup from '../../components/InputGroup/InputGroup';
 import {numberRegex} from "../../util/regex"
+import {changeDeliveryInfo} from "../../store/actions/UserAction"
+import {connect} from "react-redux";
 
 const DeliveryFormContainer = ({
     touched,
@@ -34,8 +36,19 @@ const DeliveryFormContainer = ({
     );
 };
 
-export default withFormik({
-    mapPropsToValues: () => ({ address: '', phone: "" }),
+const mapDispatchToProps = dispatch=>({
+    changeDeliveryInfo: (address,phone) =>{
+        dispatch(changeDeliveryInfo(address,phone))
+    } 
+})
+
+const mapStateToProps =state => ({
+    address: state.user.user.address,
+    phone: state.user.user.phone,
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(withFormik({
+    mapPropsToValues: (props) => ({ address: props.address, phone: props.phone }),
 
     // Custom sync validation
     validate: values => {
@@ -55,9 +68,9 @@ export default withFormik({
 
     },
 
-    handleSubmit: (values) => {
-        console.log(values)
+    handleSubmit: (values, {props}) => {
+        props.changeDeliveryInfo(values.address,values.phone)
     },
 
     displayName: 'DeliveryForm',
-})(DeliveryFormContainer);
+})(DeliveryFormContainer));

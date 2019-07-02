@@ -2,7 +2,12 @@ import * as types from "../constants/UserConstants";
 
 const initialState = {
     token : "",
-    user : {},
+    user : {
+        name: "",
+        email: "",
+        address: "",
+        phone:"",
+    },
 }
 
 const userReducer = (state=initialState, action) =>{
@@ -17,6 +22,16 @@ const userReducer = (state=initialState, action) =>{
                 ...state,
                 token: action.token
             }
+        case types.CHANGE_DELIVERY_INFO:
+            return{
+                ...state,
+                user:{
+                    ...state.user,
+                    address: action.address,
+                    phone: action.phone
+                }
+            }
+
         default :
             return state;
     }

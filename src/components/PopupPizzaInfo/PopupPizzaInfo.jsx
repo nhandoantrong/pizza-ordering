@@ -39,11 +39,20 @@ class PopupPizzaInfo extends Component {
     componentWillReceiveProps(nextprops) {
         if (this.props.info.name !== nextprops.info.name) {
             const { info } = nextprops;
-
             this.setState({
-                choice: info.choices[0],
-                size: info.choices[0].size,
-                type: info.choices[0].type,
+                choice: info.pricing[0],
+                size: info.pricing[0].size,
+                type: info.pricing[0].type,
+                toppingChoices: [],
+                quantity: 1
+            })
+        }
+        else if (!this.props.isOpen && nextprops.isOpen) {
+            const { info } = nextprops;
+            this.setState({
+                choice: info.pricing[0],
+                size: info.pricing[0].size,
+                type: info.pricing[0].type,
                 toppingChoices: [],
                 quantity: 1
             })
@@ -52,7 +61,7 @@ class PopupPizzaInfo extends Component {
 
     changeQuantity = (number) => {
         this.setState({
-            quantity: Math.max(this.state.quantity + number,1)
+            quantity: Math.max(this.state.quantity + number, 1)
         })
     }
 
@@ -62,7 +71,7 @@ class PopupPizzaInfo extends Component {
             [event.target.name]: event.target.value
         }, () => {
             this.setState({
-                choice: info.choices.find(item => item.size === this.state.size && item.type === this.state.type)
+                choice: info.pricing.find(item => item.size === this.state.size && item.type === this.state.type)
             }, () => {
                 console.log(this.state.choice)
             }
@@ -77,9 +86,9 @@ class PopupPizzaInfo extends Component {
         this.props.closeModal();
     }
     filterByAttribute = (attr) => {
-        const choices = this.props.info ? this.props.info.choices : null;
-        if (choices)
-            return [...new Set(choices.map(choice => choice[attr]))];
+        const pricing = this.props.info ? this.props.info.pricing : null;
+        if (pricing)
+            return [...new Set(pricing.map(choice => choice[attr]))];
         return []
     }
 
@@ -132,9 +141,9 @@ class PopupPizzaInfo extends Component {
                                 removeTopping={this.removeTopping}
                             />
                             <div className="submit-line">
-                                <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity}/>
+                                <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity} />
                                 <div className="price">
-                                    <h3>Total price: ${this.state.quantity*(this.state.choice.price + toppingPrice)}</h3>
+                                    <h3>Total price: ${this.state.quantity * (this.state.choice.price + toppingPrice)}</h3>
                                 </div>
                                 <button onClick={() => {
                                     this.props.addToCart({
@@ -143,8 +152,9 @@ class PopupPizzaInfo extends Component {
                                             ...this.state.choice,
                                             name: info.name,
                                             picture: info.picture,
+                                            _id : info._id
                                         },
-                                        toppingList:[...this.state.toppingChoices],
+                                        toppingList: [...this.state.toppingChoices],
                                         quantity: this.state.quantity
                                     })
                                     this.props.closeModal();

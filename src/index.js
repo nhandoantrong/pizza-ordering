@@ -17,6 +17,7 @@ import "./scss/main.scss"
 const persistConfig = {
     key: 'root',
     storage,
+    whitelist :["user", "order"]
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

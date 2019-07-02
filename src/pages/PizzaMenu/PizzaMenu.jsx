@@ -4,7 +4,6 @@ import PizzaListContainer from '../../containers/PizzaListContainer/PizzaListCon
 
 import { connect } from "react-redux"
 import { getCategoryFromServer } from "../../store/actions/CategoryAction";
-import { filterProduct } from './FilterProduct';
 import { getToppingFromServer } from "../../store/actions/ToppingAction"
 class PizzaMenu extends Component {
     state = {
@@ -51,7 +50,7 @@ class PizzaMenu extends Component {
         if (categories.length === 0)
             return null
         const fullArray = categories[currentTypeIndex].productID;
-        const pizzaArray = filterProduct(fullArray);
+        const pizzaArray = fullArray;
         return <PizzaListContainer pizzaArray={pizzaArray} />
     }
 

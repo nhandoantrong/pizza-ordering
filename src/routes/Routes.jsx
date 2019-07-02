@@ -8,6 +8,7 @@ import LoginPage from '../pages/LoginPage/LoginPage';
 import ShoppingCartPage from '../pages/ShoppingCartPage/ShoppingCartPage';
 import DeliveryInfoPage from '../pages/DeliveryInfoPage/DeliveryInfoPage';
 import Page404 from '../pages/Page404/Page404';
+import BillingPage from '../pages/BillingPage/BillingPage';
 
 const CustomerRoute = () => {
     return (
@@ -18,6 +19,8 @@ const CustomerRoute = () => {
             <Route path = "/login" exact render = {() => <EntryGuard Component={LoginPage} />}/>
             <Route path = "/shopping-cart" exact component ={ShoppingCartPage} />
             <Route path ="/delivery-info" exact component = {DeliveryInfoPage}  />
+            <Route path ="/billing" exact component = {BillingPage}  />
+
             <Route path = "" component ={Page404} />
         </Switch>
     );
