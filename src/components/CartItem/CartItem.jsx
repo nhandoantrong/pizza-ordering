@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React, {  Fragment } from 'react';
 import "./CartItem.scss"
-const CartItem = ({ product }) => {
-    const [quantity, setQuantity] = useState(1);
-
-    const changeQuantity = (number) =>{
-        setQuantity(quantity+number);
-    }
+import MediaQuery from "react-responsive";
+import { smallScreenWidth } from "../../util/screenWidthConstant"
+const CartItem = ({ product, toppingList,quantity }) => {
+    
+    console.log(toppingList);
+    
 
     return (
         <div className="cart-item">
@@ -22,19 +22,44 @@ const CartItem = ({ product }) => {
                         Crust: {product.type}
                     </div>
                 </div>
+
+                <div className="toppings">
+                    <h4>Toppings:</h4>
+
+                    <div className="row">
+                        {toppingList.map((topping) => {
+                            return <Fragment key={topping._id}>
+                                <MediaQuery minDeviceWidth={smallScreenWidth}>
+                                    <div className="col-3" key={topping._id}>
+                                        {topping.name}
+                                    </div>
+                                </MediaQuery>
+                                <MediaQuery maxDeviceWidth={smallScreenWidth+1}>
+                                    <div className="col-6" key={topping._id}>
+                                        {topping.name}
+                                    </div>
+                                </MediaQuery>
+                            </Fragment>
+
+
+                        })}
+                    </div>
+
+                </div>
+
                 <div className="quantity">
-                    <div className="change minus"onClick={()=>changeQuantity(-1)}>
+                    <div className="change minus" >
                         -
                     </div>
                     <div className="number">
                         {quantity}
                     </div>
-                    <div className="change plus" onClick={()=>changeQuantity(1)}>
+                    <div className="change plus" >
                         +
                     </div>
                 </div>
                 <div className="price">
-                    ${product.price*quantity}
+                    ${product.price * quantity}
                 </div>
             </div>
             <div className="delete-button">

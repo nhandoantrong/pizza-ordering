@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-responsive-modal';
 import "./PopupPizzaInfo.scss";
+import ToppingList from './ToppingList/ToppingList';
+import QuantityChange from '../QuantityChange/QuantityChange';
 
 class PopupPizzaInfo extends Component {
 
@@ -9,20 +11,49 @@ class PopupPizzaInfo extends Component {
         this.state = {
             choice: {},
             size: "",
-            type: ""
+            type: "",
+            toppingChoices: [],
+            quantity: null,
         }
     }
 
+    addTopping = (topping) => {
+        this.setState({
+            toppingChoices: [...this.state.toppingChoices, topping]
+        })
+    }
+    removeTopping = (topping) => {
+
+        const index = this.state.toppingChoices.findIndex(item => item._id === topping._id);
+        const newToppingChoice = [...this.state.toppingChoices];
+        newToppingChoice.splice(index, 1);
+        if (index !== -1) {
+            this.setState({
+                toppingChoices: newToppingChoice
+            })
+        }
+
+    }
+
+
     componentWillReceiveProps(nextprops) {
-        if (this.props.info !== nextprops.info) {
+        if (this.props.info.name !== nextprops.info.name) {
             const { info } = nextprops;
 
             this.setState({
                 choice: info.choices[0],
                 size: info.choices[0].size,
-                type: info.choices[0].type
+                type: info.choices[0].type,
+                toppingChoices: [],
+                quantity: 1
             })
         }
+    }
+
+    changeQuantity = (number) => {
+        this.setState({
+            quantity: Math.max(this.state.quantity + number,1)
+        })
     }
 
     handleOnChange = (event) => {
@@ -59,8 +90,11 @@ class PopupPizzaInfo extends Component {
     }
 
     render() {
-        const { isOpen, info } = this.props
-
+        const { isOpen, info, toppings } = this.props;
+        const toppingPrice = this.state.toppingChoices.reduce((previousValue, topping) => {
+            return previousValue + topping.price
+        }, 0)
+        console.log(this.state.choice)
         return (
             <Modal open={isOpen}
                 onOverlayClick={this.closeOnOverlayClick}
@@ -94,9 +128,14 @@ class PopupPizzaInfo extends Component {
                                     </select>
                                 </div>
                             </div>
+                            <ToppingList toppingList={toppings}
+                                addTopping={this.addTopping}
+                                removeTopping={this.removeTopping}
+                            />
                             <div className="submit-line">
+                                <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity}/>
                                 <div className="price">
-                                    <h3>Total price: ${this.state.choice.price}</h3>
+                                    <h3>Total price: ${this.state.quantity*(this.state.choice.price + toppingPrice)}</h3>
                                 </div>
                                 <button onClick={() => {
                                     this.props.addToCart({
@@ -105,8 +144,9 @@ class PopupPizzaInfo extends Component {
                                             ...this.state.choice,
                                             name: info.name,
                                             picture: info.picture,
-                                            _id: info._id
-                                        }
+                                        },
+                                        toppingList:[...this.state.toppingChoices],
+                                        quantity: this.state.quantity
                                     })
                                     this.props.closeModal();
                                 }}>ADD TO CART</button>

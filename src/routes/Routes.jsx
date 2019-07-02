@@ -1,11 +1,11 @@
 import React from 'react';
 import {Switch, Route} from "react-router-dom"
-import HomePage from "../../pages/HomePage/HomePage";
-import PizzaMenu from "../../pages/PizzaMenu/PizzaMenu"
-import RegisterPage from '../../pages/RegisterPage/RegisterPage';
-import EntryGuard from '../../containers/PageGuards/EntryGuard';
-import LoginPage from '../../pages/LoginPage/LoginPage';
-import ShoppingCartPage from '../../pages/ShoppingCartPage/ShoppingCartPage';
+import HomePage from "../pages/HomePage/HomePage";
+import PizzaMenu from "../pages/PizzaMenu/PizzaMenu"
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import EntryGuard from '../containers/PageGuards/EntryGuard';
+import LoginPage from '../pages/LoginPage/LoginPage';
+import ShoppingCartPage from '../pages/ShoppingCartPage/ShoppingCartPage';
 
 const CustomerRoute = () => {
     return (

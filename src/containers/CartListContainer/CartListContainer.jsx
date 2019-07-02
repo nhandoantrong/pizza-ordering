@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 const CartListContainer = ({orderList}) => {
 
     const renderOrderList = orderList.map((order,index)=>(
-        <CartItem product={order.product} key={index}/>
+        <CartItem product={order.product} key={index} toppingList = {order.toppingList} quantity= {order.quantity}/>
     ))
     
     return (

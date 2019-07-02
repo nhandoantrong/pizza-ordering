@@ -1,0 +1,30 @@
+@import "../../scss/abstract/variable";
+
+.quantity{
+    display: inline-flex;
+    align-items: center;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: $close-distance 0;
+
+    .change{
+        padding: $closer-distance $close-distance;
+        color: white;
+        font-weight: $bold-weight;
+        cursor: pointer;
+        &.minus{
+            background-color: $black-color;
+        }
+        &.plus{
+            background-color: $primary-color;
+        }
+    }
+    .number{
+        
+        padding: ($closer-distance +2) $close-distance;
+        border-top: 1px $grey-border-color solid;
+        border-bottom: 1px $grey-border-color solid;
+        font-size: $small-font-size;
+
+    }
+}

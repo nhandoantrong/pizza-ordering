@@ -5,7 +5,7 @@ import { emailRegex } from "../../util/regex"
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerToServer } from "../../store/actions/UserAction";
-import {userExisted} from "../../util/errorMessageConstant"
+import { userExisted } from "../../util/errorMessageConstant"
 
 const RegisterFormContainer = ({
     touched,
@@ -15,7 +15,7 @@ const RegisterFormContainer = ({
     values
 }) => {
 
-    if (registerError.message===userExisted&&registerError.currentEmail===values.email){
+    if (registerError.message === userExisted && registerError.currentEmail === values.email) {
         errors.email = userExisted;
     }
     return (
@@ -64,8 +64,8 @@ const RegisterFormContainer = ({
 };
 
 
-const mapStateToProps = state =>({
-    registerError : state.error.registerErr
+const mapStateToProps = state => ({
+    registerError: state.error.registerErr
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -74,14 +74,15 @@ const mapDispatchToProps = dispatch => ({
     }
 })
 
-export default connect(mapStateToProps,mapDispatchToProps)(withFormik({
+export default connect(mapStateToProps, mapDispatchToProps)(withFormik({
     mapPropsToValues: () => ({ name: '', email: "", password: "", rePassword: "" }),
 
     // Custom sync validation
-    validate: (values,props) => {
+    validate: (values, props) => {
+
         const { name, email, password, rePassword } = values;
         const errors = {}
-        
+
         if (!name) {
             errors.name = "Please provide your name"
         }
@@ -91,8 +92,6 @@ export default connect(mapStateToProps,mapDispatchToProps)(withFormik({
         } else if (!emailRegex.test(email)) {
             errors.email = "Email must be valid"
         }
-        
-
         if (!password) {
             errors.password = "Please provide password"
         }
@@ -111,7 +110,7 @@ export default connect(mapStateToProps,mapDispatchToProps)(withFormik({
 
     handleSubmit: (values, { props }) => {
 
-        props.register({...values});
+        props.register({ ...values });
     },
 
     displayName: 'RegisterForm',

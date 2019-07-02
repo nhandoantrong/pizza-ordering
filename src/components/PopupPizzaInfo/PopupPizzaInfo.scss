@@ -5,9 +5,10 @@
   width: 230px;
   overflow-y: auto;
   max-height: 80vh;
+  overflow-x: hidden;
   @media screen and (min-width: $small-screen-width) {
     width: unset;
-    .pizza-info{
+    .pizza-info {
       display: flex;
     }
   }
@@ -17,8 +18,8 @@
   }
   .pizza-pic {
     @media screen and (min-width: $small-screen-width) {
-        padding: 0 $close-distance;
-        flex: 1;
+      padding: 0 $close-distance;
+      flex: 1;
     }
     img {
       width: 100%;
@@ -47,8 +48,16 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      .price{
+      flex-direction: column;
+      @media screen and (min-width: $medium-screen-width) {
+        flex-direction: row;
+
+      }
+      .price {
         padding-right: $close-distance;
+        h3 {
+          font-size: $normal-font-size;
+        }
       }
       button {
         @include twoRoundedEnd($primary-color-lighter, 2px);
