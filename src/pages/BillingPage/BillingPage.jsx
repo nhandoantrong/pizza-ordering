@@ -2,10 +2,19 @@ import React from 'react';
 import "./BillingPage.scss"
 import CartListContainer from '../../containers/CartListContainer/CartListContainer';
 import DeliveryFormContainer from '../../containers/DeliveryFormContainer/DeliveryFormContainer';
-import { connect } from "react-redux"
-const BillingPage = ({ totalPrice }) => {
-    console.log(totalPrice);
+import { connect } from "react-redux";
+import {reduceOrder} from "./ReduceOrder";
+import {checkoutOnServer} from "../../store/actions/OrderAction"
+const BillingPage = ({ totalPrice, orderList, user ,checkout, token }) => {
+    const reducedList = reduceOrder(orderList);
+    const order={
+        phone: user.phone,
+        address: user.address,
+        totalPrice,
+        orderDetail: reducedList
+    }
 
+    
     return (
         <div className="container billing-page">
             <div className="liar"></div>
@@ -24,7 +33,7 @@ const BillingPage = ({ totalPrice }) => {
                         <h3>Payment Method</h3>
                         <div className="payment-methods">
                             <div className="method">
-                                <input type="radio" name="payment" id="COD" />
+                                <input type="radio" name="payment" id="COD" defaultChecked/>
                                 <label htmlFor="COD">
                                     <img src={require("../../assets/img/Cash-On-Delivery-Logo.jpg")} alt="COD" />
                                 </label>
@@ -39,7 +48,9 @@ const BillingPage = ({ totalPrice }) => {
                     </div>
                     <div className="submit-line">
                         <h3 className="total-price">Total: ${totalPrice}</h3>
-                        <button>CONFIRM</button>
+                        <button onClick={()=>{
+                            checkout(order,token)
+                        }}>CONFIRM</button>
                     </div>
                 </div>
             </div>
@@ -48,7 +59,17 @@ const BillingPage = ({ totalPrice }) => {
 };
 
 const mapStateToProps = state => ({
-    totalPrice: state.order.totalPrice
+    user : state.user.user,
+    totalPrice: state.order.totalPrice,
+    orderList: state.order.orderList,
+    token: state.user.token
 })
 
-export default connect(mapStateToProps)(BillingPage);
+const mapDispatchToProps = dispatch =>({
+    checkout : (order, token ) =>{
+        dispatch(checkoutOnServer(order,token))
+    }
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(BillingPage);

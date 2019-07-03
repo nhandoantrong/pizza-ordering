@@ -1,0 +1,19 @@
+{
+	"address": "1",
+	"phone": "0234567891",
+	"totalPrice": 73,
+	"orderDetail": [
+		{
+			"productID": "5d1b19a9ce23fb38cc671c84",
+			"size": "S",
+			"type": "Thin",
+			"quantity": 1,
+			"topping": ["5d1475a704087e1a04e58923",
+						"5d14752604087e1a04e5891f",
+						"5d1475ce04087e1a04e58925",
+						"5d14757804087e1a04e58921",
+						"5d1474ef04087e1a04e5891d",
+						"5d14742104087e1a04e58919"]	
+		}
+		]
+}

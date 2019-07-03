@@ -54,6 +54,11 @@ const orderReducer = (state= initialState,action) =>{
                 ...initialState
             }
         }
+        case types.CHECKOUT:{
+            return{
+                ...initialState
+            }
+        }
 
         default:
             return state;
