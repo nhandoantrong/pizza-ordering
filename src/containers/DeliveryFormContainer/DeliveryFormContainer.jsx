@@ -4,6 +4,7 @@ import InputGroup from '../../components/InputGroup/InputGroup';
 import {numberRegex} from "../../util/regex"
 import {changeDeliveryInfo} from "../../store/actions/UserAction"
 import {connect} from "react-redux";
+import {Link} from "react-router-dom"
 
 const DeliveryFormContainer = ({
     touched,
@@ -34,7 +35,7 @@ const DeliveryFormContainer = ({
             )} />
 
             {isCanBeModified? <div className="submit-line">
-                <div></div>
+                <Link to="/shopping-cart">Change your cart again?</Link>
                 <button type="submit">CONFIRM</button>
             </div> : null}
         </form>

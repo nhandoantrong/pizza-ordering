@@ -14,6 +14,7 @@ export const deleteOrder = (orderID) =>({
 
 export const checkoutOnServer =(order, token) =>{
     return dispatch =>{        
+        console.log(order);
         fireLoading("Processing Order")
         OrderAPI(order,token)
             .then(res=>{

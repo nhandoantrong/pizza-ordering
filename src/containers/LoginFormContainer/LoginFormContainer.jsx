@@ -14,10 +14,10 @@ const LoginFormContainer = ({
     values
 
 }) => {
-    if (loginErr.message === wrongPassword && values.password === loginErr.currentPassword) {
+    if (loginErr.message === wrongPassword && values.password === loginErr.currentPassword &&values.email === loginErr.currentEmail) {
         errors.password = wrongPassword;
     }
-    else if (loginErr.message === wrongEmail && values.email === loginErr.currentEmail) {
+    else if (loginErr.message === wrongEmail && values.email === loginErr.currentEmail  && values.password === loginErr.currentPassword) {
         errors.email = wrongEmail;
     }
     return (

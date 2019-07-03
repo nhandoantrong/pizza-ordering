@@ -3,18 +3,22 @@ import "./BillingPage.scss"
 import CartListContainer from '../../containers/CartListContainer/CartListContainer';
 import DeliveryFormContainer from '../../containers/DeliveryFormContainer/DeliveryFormContainer';
 import { connect } from "react-redux";
-import {reduceOrder} from "./ReduceOrder";
-import {checkoutOnServer} from "../../store/actions/OrderAction"
-const BillingPage = ({ totalPrice, orderList, user ,checkout, token }) => {
+import { reduceOrder } from "./ReduceOrder";
+import { checkoutOnServer } from "../../store/actions/OrderAction";
+import {Link ,Redirect} from "react-router-dom"
+const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
     const reducedList = reduceOrder(orderList);
-    const order={
+    const order = {
         phone: user.phone,
         address: user.address,
         totalPrice,
         orderDetail: reducedList
     }
+    if (orderList.length===0){
+        return <Redirect to="/menu"/>
+    }
 
-    
+
     return (
         <div className="container billing-page">
             <div className="liar"></div>
@@ -33,7 +37,7 @@ const BillingPage = ({ totalPrice, orderList, user ,checkout, token }) => {
                         <h3>Payment Method</h3>
                         <div className="payment-methods">
                             <div className="method">
-                                <input type="radio" name="payment" id="COD" defaultChecked/>
+                                <input type="radio" name="payment" id="COD" defaultChecked />
                                 <label htmlFor="COD">
                                     <img src={require("../../assets/img/Cash-On-Delivery-Logo.jpg")} alt="COD" />
                                 </label>
@@ -47,9 +51,11 @@ const BillingPage = ({ totalPrice, orderList, user ,checkout, token }) => {
                         </div>
                     </div>
                     <div className="submit-line">
+                        <Link to="/delivery-info">Change your infomation again?</Link>
+
                         <h3 className="total-price">Total: ${totalPrice}</h3>
-                        <button onClick={()=>{
-                            checkout(order,token)
+                        <button onClick={() => {
+                            checkout(order, token)
                         }}>CONFIRM</button>
                     </div>
                 </div>
@@ -59,15 +65,15 @@ const BillingPage = ({ totalPrice, orderList, user ,checkout, token }) => {
 };
 
 const mapStateToProps = state => ({
-    user : state.user.user,
+    user: state.user.user,
     totalPrice: state.order.totalPrice,
     orderList: state.order.orderList,
     token: state.user.token
 })
 
-const mapDispatchToProps = dispatch =>({
-    checkout : (order, token ) =>{
-        dispatch(checkoutOnServer(order,token))
+const mapDispatchToProps = dispatch => ({
+    checkout: (order, token) => {
+        dispatch(checkoutOnServer(order, token))
     }
 })
 

@@ -24,8 +24,11 @@
         }
         .submit-line{
             margin-top: $normal-distance;
-            margin-bottom: $normal-distance
-
+            margin-bottom: $normal-distance;
+            align-items: center;
+            .total-price{
+                margin: 0;
+            }
         }
     }
     .payment-methods{
