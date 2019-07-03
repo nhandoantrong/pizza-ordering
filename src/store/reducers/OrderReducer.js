@@ -37,7 +37,6 @@ const orderReducer = (state= initialState,action) =>{
             
 
         case types.DELETE_ORDER:{
-            console.log(action.orderID);
             const newOrderList = [...state.orderList];
             const targetIndex = newOrderList.findIndex(order=> order.id===action.orderID);
             newOrderList.splice(targetIndex,1);

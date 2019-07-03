@@ -18,7 +18,6 @@ const userReducer = (state=initialState, action) =>{
                 token: action.token
             }
         case types.LOGIN:
-            console.log(action)
             return {
                 ...state,
                 token: action.token,

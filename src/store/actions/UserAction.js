@@ -64,7 +64,6 @@ export const loginToServer = (userLogin) =>{
 
 const login = (token,email,name) => 
 {
-    console.log("running")
     return{
         type: types.LOGIN,
         token,

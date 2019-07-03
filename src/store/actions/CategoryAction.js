@@ -1,6 +1,6 @@
 import * as types from "../constants/CategoryContants";
 import {getCategoriesAPI} from "../../services/CategoriesServices";
-import {fireLoading, closeSwal} from "../../util/AlertFiring"
+import {fireLoading, closeSwal, fireError} from "../../util/AlertFiring"
 
 
 export const getCategoryFromServer = ()=>{
@@ -10,10 +10,10 @@ export const getCategoryFromServer = ()=>{
         getCategoriesAPI().then(res=>{
             dispatch(getCategories(res.data));
             closeSwal();
-            console.log(res.data);
             
         })
         .catch(err=>{
+            fireError("Something went wrong")
         })
     }
 }

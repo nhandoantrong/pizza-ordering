@@ -14,7 +14,6 @@ const LoginFormContainer = ({
     values
 
 }) => {
-    console.log ()
     if (loginErr.message === wrongPassword && values.password === loginErr.currentPassword) {
         errors.password = wrongPassword;
     }

@@ -13,7 +13,7 @@ export const deleteOrder = (orderID) =>({
 
 
 export const checkoutOnServer =(order, token) =>{
-    return dispatch =>{
+    return dispatch =>{        
         fireLoading("Processing Order")
         OrderAPI(order,token)
             .then(res=>{

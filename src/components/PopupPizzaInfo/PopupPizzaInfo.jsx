@@ -72,10 +72,7 @@ class PopupPizzaInfo extends Component {
         }, () => {
             this.setState({
                 choice: info.pricing.find(item => item.size === this.state.size && item.type === this.state.type)
-            }, () => {
-                console.log(this.state.choice)
-            }
-            )
+            })
         }
         )
     }
