@@ -1,0 +1,44 @@
+@import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
+
+.billing-page{
+    @include fullscreen();
+    position: relative;
+    h1{
+        text-align: center;
+    }
+    .cart-info{
+        margin-top: $normal-distance;
+        max-height: calc(100vh - 120px);
+        overflow: auto;
+        padding: $closer-distance;
+    }
+    .delivery-info{
+        min-height: unset;
+        margin-top: unset;
+        position: sticky;
+        h3{
+            text-align: center;
+            margin-bottom: $normal-distance;
+        }
+        .submit-line{
+            margin-top: $normal-distance;
+            margin-bottom: $normal-distance
+
+        }
+    }
+    .payment-methods{
+        .method{
+            display: flex;
+            align-items: center;
+            margin-bottom: $close-distance;
+            img{
+                max-width: 150px;
+            }
+            input{
+                margin-right: $normal-distance;
+            }
+        }
+    }
+}

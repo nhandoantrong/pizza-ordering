@@ -1,8 +1,9 @@
 import * as types from "../constants/OrderConstant"
-
+import {LOGOUT} from "../constants/UserConstants"
 
 const initialState = {
-    orderList :[]
+    orderList :[],
+    totalPrice:0
 }
 
 const calculateNextID =(state) =>{
@@ -14,21 +15,45 @@ const calculateNextID =(state) =>{
     }
 }
 
+const calculateTotalPrice = (orderList) =>{
+    return  orderList.reduce((preValue, currentOrder) => {
+        const calculateToppingPrice = currentOrder.toppingList.reduce((preVal, currentTopping) => {
+            return preVal + currentTopping.price;
+        }, 0)
+        return preValue + (currentOrder.product.price + calculateToppingPrice) * currentOrder.quantity
+    }, 0)
+} 
+
 const orderReducer = (state= initialState,action) =>{
     switch (action.type){
-        case types.ADD_TO_CART:
+        case types.ADD_TO_CART:{
+            const newOrderList =[...state.orderList, {...action.order,id : calculateNextID(state)}];
+            const totalPrice = calculateTotalPrice(newOrderList)
             return {
-                orderList:[...state.orderList, {...action.order,id : calculateNextID(state)}]
+                orderList: newOrderList,
+                totalPrice 
             }
+        }
+            
 
-        case types.DELETE_ORDER:
+        case types.DELETE_ORDER:{
             console.log(action.orderID);
             const newOrderList = [...state.orderList];
             const targetIndex = newOrderList.findIndex(order=> order.id===action.orderID);
             newOrderList.splice(targetIndex,1);
+            const totalPrice = calculateTotalPrice(newOrderList)
+
             return{
-                orderList:newOrderList
+                orderList:newOrderList,
+                totalPrice
             }
+        }
+        
+        case LOGOUT:{
+            return{
+                ...initialState
+            }
+        }
 
         default:
             return state;

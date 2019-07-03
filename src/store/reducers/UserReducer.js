@@ -18,9 +18,15 @@ const userReducer = (state=initialState, action) =>{
                 token: action.token
             }
         case types.LOGIN:
+            console.log(action)
             return {
                 ...state,
-                token: action.token
+                token: action.token,
+                user:{
+                    ...state.user,
+                    email: action.email,
+                    name: action.name
+                }
             }
         case types.CHANGE_DELIVERY_INFO:
             return{
@@ -30,6 +36,10 @@ const userReducer = (state=initialState, action) =>{
                     address: action.address,
                     phone: action.phone
                 }
+            }
+        case types.LOGOUT:
+            return{
+                ...initialState
             }
 
         default :

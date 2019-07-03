@@ -8,7 +8,8 @@ import {connect} from "react-redux";
 const DeliveryFormContainer = ({
     touched,
     errors,
-    handleSubmit
+    handleSubmit,
+    isCanBeModified=false
 }) => {
     return (
         <form onSubmit={handleSubmit}>
@@ -17,7 +18,9 @@ const DeliveryFormContainer = ({
                     type="text"
                     labelContent="Address"
                     touched={touched.address}
-                    error= {errors.address} />
+                    error= {errors.address}
+                    disabled={!isCanBeModified}
+                    />
             )} />
 
             <Field name="phone" render={({ field }) => (
@@ -25,13 +28,15 @@ const DeliveryFormContainer = ({
                     type="text"
                     labelContent="Phone" 
                     touched={touched.phone}
-                    error= {errors.phone}/>
+                    error= {errors.phone}
+                    disabled={!isCanBeModified}
+                    />
             )} />
 
-            <div className="submit-line">
+            {isCanBeModified? <div className="submit-line">
                 <div></div>
                 <button type="submit">CONFIRM</button>
-            </div>
+            </div> : null}
         </form>
     );
 };
@@ -69,7 +74,9 @@ export default connect(mapStateToProps,mapDispatchToProps)(withFormik({
     },
 
     handleSubmit: (values, {props}) => {
-        props.changeDeliveryInfo(values.address,values.phone)
+        props.changeDeliveryInfo(values.address,values.phone);
+        
+        props.history.push("/billing")
     },
 
     displayName: 'DeliveryForm',

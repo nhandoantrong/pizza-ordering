@@ -1,6 +1,6 @@
 import React from 'react';
 import "./InputGroup.scss";
-const InputGroup = ({ field={}, type, labelContent, error, touched }) => {
+const InputGroup = ({ field={}, type, labelContent, error, touched, disabled }) => {
 
 
     const inputClassname = () => {
@@ -17,7 +17,7 @@ const InputGroup = ({ field={}, type, labelContent, error, touched }) => {
     return (
         <div className="input-group">
             <div className="input">
-                <input {...field} type={type} id={field.name} className={inputClassname()} autoComplete="true" />
+                <input {...field} type={type} id={field.name} className={inputClassname()} autoComplete="true" disabled={disabled}/>
                 <label htmlFor={field.name}>{labelContent}</label>
             </div>
 

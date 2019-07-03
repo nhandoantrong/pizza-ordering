@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import "./Header.scss";
 import { connect } from "react-redux";
+import { logOut } from "../../store/actions/UserAction"
 
-const Header = ({ orderList }) => {
+const Header = ({ orderList, token, logOut }) => {
     const [showMenu, setShowMenu] = useState(false);
 
     const handleToggleMenu = () => {
@@ -13,7 +14,6 @@ const Header = ({ orderList }) => {
     const closeMenu = () => {
         setShowMenu(false);
     }
-
     return (
         <header className="header" >
 
@@ -21,12 +21,18 @@ const Header = ({ orderList }) => {
                 <img src={logo} alt="" />
                 <span>Dev's Pizza</span>
             </Link>
+            {token ? <>
+                <Link onClick={closeMenu} to="/shopping-cart" className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
+                    <i className="fas fa-shopping-cart"></i>
+                    {orderList.length > 0 ? <div>{orderList.length}</div> : null}
 
-             <Link onClick={closeMenu} to="/shopping-cart" className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
-                <i className="fas fa-shopping-cart"></i>
-                {orderList.length> 0 ? <div>{orderList.length}</div>: null}
+                </Link>
 
-            </Link> 
+                <div className="user-icon">
+                    <i className="fas fa-user"></i>
+                </div>
+            </> : null}
+
 
             <div className="navigator">
                 <div className={`icon ${showMenu ? "active" : ""}`} onClick={handleToggleMenu}>
@@ -44,12 +50,24 @@ const Header = ({ orderList }) => {
                         PROMOTION
                     </Link>
 
-                    <Link to="/login" className="item" onClick={handleToggleMenu}>
-                        LOGIN
-                    </Link>
-                    <Link to="/register" className="item" onClick={handleToggleMenu}>
-                        REGISTER
-                    </Link>
+                    {!token ? <>
+                        <Link to="/login" className="item" onClick={handleToggleMenu}>
+                            LOGIN
+                        </Link>
+                        <Link to="/register" className="item" onClick={handleToggleMenu}>
+                            REGISTER
+                        </Link>
+                    </> :
+                        <Link to="/" className="item"
+                            onClick={() => {
+                                handleToggleMenu();
+                                logOut();
+                            }}>
+                            SIGN OUT
+                        </Link>
+
+                    }
+
                 </div>
             </div>
         </header>
@@ -57,6 +75,13 @@ const Header = ({ orderList }) => {
 };
 
 const mapStateToProps = state => ({
-    orderList: state.order.orderList
+    orderList: state.order.orderList,
+    token: state.user.token
 })
-export default connect(mapStateToProps)(Header);
+
+const mapDispatchToProps = dispatch => ({
+    logOut: () => {
+        dispatch(logOut())
+    }
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

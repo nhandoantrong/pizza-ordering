@@ -4,12 +4,12 @@ import Footer from '../components/Footer/Footer';
 import Routes from '../routes/Routes';
 import ScrollToTop from '../components/ScrollToTop/ScrollToTop';
 import InfoModalContainer from '../containers/ModalContainer/InfoModalContainer';
-const Template = () => {
+const Template = (props) => {
     return (
         <ScrollToTop>
             <Header />
             <Routes />
-            <InfoModalContainer />
+            <InfoModalContainer  history= {props.history}/>
             <Footer />
         </ScrollToTop>
 

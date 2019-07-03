@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import "./CartItem.scss"
 import MediaQuery from "react-responsive";
 import { smallScreenWidth } from "../../util/screenWidthConstant"
-const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder }) => {
+const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanBeModify = true }) => {
 
     const toppingPrice = toppingList.reduce((previousValue, topping) => {
         return previousValue + topping.price
@@ -56,9 +56,10 @@ const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder }) => {
                     ${(product.price + toppingPrice) * quantity}
                 </div>
             </div>
-            <div className="delete-button" onClick={() => { deleteOrder(orderID) }}>
+            {isCanBeModify? <div className="delete-button" onClick={() => { deleteOrder(orderID) }}>
                 <i className="fas fa-times"></i>
-            </div>
+            </div> : null}
+            
         </div>
     );
 };

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import { emailRegex } from "../../util/regex";
 import { connect } from "react-redux";
 import { loginToServer } from "../../store/actions/UserAction"
-import { wrongPassword } from "../../util/errorMessageConstant"
+import { wrongPassword,wrongEmail } from "../../util/errorMessageConstant"
 const LoginFormContainer = ({
     touched,
     errors,
@@ -18,7 +18,9 @@ const LoginFormContainer = ({
     if (loginErr.message === wrongPassword && values.password === loginErr.currentPassword) {
         errors.password = wrongPassword;
     }
-
+    else if (loginErr.message === wrongEmail && values.email === loginErr.currentEmail) {
+        errors.email = wrongEmail;
+    }
     return (
         <form onSubmit={handleSubmit}>
             <Field name="email" render={({ field }) => {
@@ -48,7 +50,6 @@ const LoginFormContainer = ({
 };
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         loginErr: state.error.loginErr
 

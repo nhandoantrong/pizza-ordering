@@ -3,7 +3,7 @@ import CartItem from '../../components/CartItem/CartItem';
 import { connect } from 'react-redux'
 import { deleteOrder } from "../../store/actions/OrderAction";
 import "./CartListContainer.scss"
-const CartListContainer = ({ orderList, deleteOrder,history }) => {
+const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = true }) => {
 
     const renderOrderList = orderList.map((order, index) => (
         <CartItem product={order.product}
@@ -12,6 +12,7 @@ const CartListContainer = ({ orderList, deleteOrder,history }) => {
             quantity={order.quantity}
             orderID={order.id}
             deleteOrder={deleteOrder}
+            isCanBeModify={isCanBeModified}
         />
     ))
 
@@ -26,17 +27,17 @@ const CartListContainer = ({ orderList, deleteOrder,history }) => {
         <div className="cart-list">
             {renderOrderList}
             {
-                calculateTotalPrice >0?
-                <div className="confirmation">
-                    <h3 className="total-price">
-                        Total price : {calculateTotalPrice}
-                    </h3>
-
-                    <button className="confirm" onClick={()=>{history.push("/delivery-info")}}>
-                        CONFIRM
-                    </button>
-                </div>
-                : null
+                calculateTotalPrice > 0 ?
+                    <div className="confirmation">
+                        {isCanBeModified ? <h3 className="total-price">
+                            Total price : {calculateTotalPrice}
+                        </h3> : null
+                        }
+                        {isCanBeModified ? <button className="confirm" onClick={() => { history.push("/delivery-info") }}>
+                            CONFIRM
+                        </button> : null}
+                    </div>
+                    : null
             }
 
         </div>
