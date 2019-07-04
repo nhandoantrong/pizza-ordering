@@ -11,13 +11,14 @@ export const registerToServer = (userRegister) => {
             fireLoading("Checking On Server")
             registerAPI(userRegister)
                 .then(res => {
-                    const token = res.data.token;
-                    closeSwal()
-                    if (!token){
+                    closeSwal();
+                    if (res.data.err){
                         throw res.data.err;
                     }
-                
-                    dispatch(register(token));
+                    const token = res.data[0].token;
+                    const email = res.data[1].email;
+                    const name = res.data[2].name;
+                    dispatch(login(token,email,name))
 
                 })
                 .catch(err=>{
