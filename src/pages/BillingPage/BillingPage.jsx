@@ -17,6 +17,10 @@ const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
     if (orderList.length===0){
         return <Redirect to="/menu"/>
     }
+    else if (!user.phone || !user.address){
+        return <Redirect to="/delivery-info"/>
+
+    }
 
 
     return (

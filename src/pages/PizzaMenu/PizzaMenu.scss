@@ -1,4 +1,6 @@
 @import "../../scss/abstract/variable";
+@import "../../scss/abstract/mixin";
+
 @import "../../scss/component/col";
 
 .pizza-menu{
@@ -12,11 +14,16 @@
         h3{
             color: $primary-color;
             cursor: pointer;
-            padding: $close-distance $normal-distance;
-            padding-left: 0;
-            &.active{
-                border-bottom: none;
+            padding: $close-distance 0;
+            margin-right: $normal-distance;
+            border-bottom: transparent 2px solid;
+
+            @include transitionAll(0.15s);
+
+            &.active ,&:hover {
+                border-bottom: $primary-color 2px solid;
             }
+            
         }
 
 

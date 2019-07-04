@@ -2,7 +2,8 @@ import React, { Fragment } from 'react';
 import "./CartItem.scss"
 import MediaQuery from "react-responsive";
 import { smallScreenWidth } from "../../util/screenWidthConstant"
-const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanBeModify = true }) => {
+import QuantityChange from '../QuantityChange/QuantityChange';
+const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanBeModify = true, changeQuantity }) => {
 
     const toppingPrice = toppingList.reduce((previousValue, topping) => {
         return previousValue + topping.price
@@ -24,7 +25,7 @@ const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanB
                     </div>
                 </div>
 
-                <div className="toppings">
+                {toppingList.length > 0 ? <div className="toppings">
                     <h4>Toppings:</h4>
 
                     <div className="row">
@@ -47,19 +48,24 @@ const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanB
                     </div>
 
                 </div>
+                    : null
+                }
 
-                <div className="quantity">
-                    Quantity: {quantity}
+                <div className='quantity'>
+                    Quantity: {isCanBeModify ?
+                        <QuantityChange quantity={quantity} changeQuantity={(amount) => changeQuantity(orderID, amount)} />
+                        : <span>{quantity}</span>
+                    }
                 </div>
 
                 <div className="price">
                     ${(product.price + toppingPrice) * quantity}
                 </div>
             </div>
-            {isCanBeModify? <div className="delete-button" onClick={() => { deleteOrder(orderID) }}>
+            {isCanBeModify ? <div className="delete-button" onClick={() => { deleteOrder(orderID) }}>
                 <i className="fas fa-times"></i>
             </div> : null}
-            
+
         </div>
     );
 };

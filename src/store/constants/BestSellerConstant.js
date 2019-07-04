@@ -1,0 +1,2 @@
+
+export const GET_BEST_SELLER_MENU = "GET_BEST_SELLER_MENU"

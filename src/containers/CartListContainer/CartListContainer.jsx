@@ -1,9 +1,10 @@
 import React from 'react';
 import CartItem from '../../components/CartItem/CartItem';
 import { connect } from 'react-redux'
-import { deleteOrder } from "../../store/actions/OrderAction";
-import "./CartListContainer.scss"
-const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = true }) => {
+import { deleteOrder,changeQuantity } from "../../store/actions/OrderAction";
+import "./CartListContainer.scss";
+import {Link} from "react-router-dom"
+const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = true ,changeQuantity }) => {
 
     const renderOrderList = orderList.map((order, index) => (
         <CartItem product={order.product}
@@ -13,6 +14,7 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
             orderID={order.id}
             deleteOrder={deleteOrder}
             isCanBeModify={isCanBeModified}
+            changeQuantity={changeQuantity}
         />
     ))
 
@@ -29,6 +31,10 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
             {
                 calculateTotalPrice > 0 ?
                     <div className="confirmation">
+                        {isCanBeModified ? <Link to = "/menu">
+                            Wanna buy more?
+                        </Link> : null
+                        }
                         {isCanBeModified ? <h3 className="total-price">
                             Total price : {calculateTotalPrice}
                         </h3> : null
@@ -51,6 +57,9 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
     deleteOrder: (orderID) => {
         dispatch(deleteOrder(orderID))
+    },
+    changeQuantity: (id, amount) =>{
+        dispatch(changeQuantity(id,amount))
     }
 })
 

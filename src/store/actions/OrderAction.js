@@ -14,7 +14,6 @@ export const deleteOrder = (orderID) =>({
 
 export const checkoutOnServer =(order, token) =>{
     return dispatch =>{        
-        console.log(order);
         fireLoading("Processing Order")
         OrderAPI(order,token)
             .then(res=>{
@@ -25,7 +24,6 @@ export const checkoutOnServer =(order, token) =>{
                 else throw res.data;
             })
             .catch(err => {
-                console.log({...err})
                 fireError("Something went wrong")
             })
     }
@@ -34,4 +32,13 @@ export const checkoutOnServer =(order, token) =>{
 
 const checkout = () =>({
     type : types.CHECKOUT
+})
+
+
+// change quantity
+
+export const changeQuantity = (id,amount) =>({
+    type: types.CHANGE_QUANTITY,
+    amount,
+    id
 })

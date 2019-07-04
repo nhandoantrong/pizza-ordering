@@ -3,7 +3,7 @@ import PopupPizzaInfo from '../../components/PopupPizzaInfo/PopupPizzaInfo';
 import { connect } from "react-redux"
 import { toggleModal } from "../../store/actions/InfoModalAction";
 import { addToCart } from "../../store/actions/OrderAction";
-
+import {getToppingFromServer} from "../../store/actions/ToppingAction"
 
 const InfoModalContainer = props => {
 
@@ -11,6 +11,9 @@ const InfoModalContainer = props => {
         if (props.token)
             props.addToCart(product);
         else props.history.push("./login");
+    }
+    if (props.toppings.length===0){
+        props.getTopping();
     }
 
     return (
@@ -35,6 +38,9 @@ const mapDispatchToProps = (dispatch) => ({
     },
     addToCart: (product) => {
         dispatch(addToCart(product))
+    },
+    getTopping: () =>{
+        dispatch(getToppingFromServer())
     }
 })
 export default connect(mapStateToProps, mapDispatchToProps)(InfoModalContainer);

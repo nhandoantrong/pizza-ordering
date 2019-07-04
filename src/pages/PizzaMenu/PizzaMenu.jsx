@@ -34,7 +34,9 @@ class PizzaMenu extends Component {
 
     renderCategoryName = () => {
         return this.state.categories.map((categories, index) => {
-            return <h3 key={categories._id} onClick={() => { this.handleChangeCategories(index) }} >{categories.name}</h3>
+            return <h3 key={categories._id}
+            className= {`${index=== this.state.currentTypeIndex? "active": ""}`}  
+            onClick={() => { this.handleChangeCategories(index) }} >{categories.name}</h3>
         })
     }
 
