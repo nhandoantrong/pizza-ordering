@@ -15,7 +15,6 @@ const ProfilePage = ({name}) => {
                     </div>
                     <div className="user-action">
                         <div className="action">Change Infomation</div>
-                        <div className="action">Check Orders</div>
 
                     </div>
                 </div>
