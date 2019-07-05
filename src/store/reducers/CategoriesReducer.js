@@ -1,17 +1,31 @@
 import * as types from "../constants/CategoryContants";
-const initialState= {
+const initialState = {
     categories: []
 }
 
-const categoriesReducer = (state= initialState, action)=>{
-    switch(action.type){
+const getAllPizza = (categories) => {
+    let pizzaList = [];
+    for (let category of categories) {
+        pizzaList = [...pizzaList, ...category.productID];
+    }
+    return {
+        name: "ALL",
+        _id: "1",
+        productID: pizzaList
+    }
+};
+
+
+const categoriesReducer = (state = initialState, action) => {
+    switch (action.type) {
         case types.GET_CATEGORIES:
-            return{
-                categories: action.categories
+            getAllPizza(action.categories)
+            return {
+                categories: [getAllPizza(action.categories), ...action.categories,]
             }
         default:
             return state
-            
+
     }
 }
 

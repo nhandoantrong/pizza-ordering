@@ -9,6 +9,7 @@ import ShoppingCartPage from '../pages/ShoppingCartPage/ShoppingCartPage';
 import DeliveryInfoPage from '../pages/DeliveryInfoPage/DeliveryInfoPage';
 import Page404 from '../pages/Page404/Page404';
 import BillingPage from '../pages/BillingPage/BillingPage';
+import ProfilePage from '../pages/ProfilePage/ProfilePage';
 
 const CustomerRoute = () => {
     return (
@@ -20,7 +21,7 @@ const CustomerRoute = () => {
             <Route path = "/shopping-cart" exact component ={ShoppingCartPage} />
             <Route path ="/delivery-info" exact component = {DeliveryInfoPage}  />
             <Route path ="/billing" exact component = {BillingPage}  />
-
+            <Route path ="/profile" exact component = {ProfilePage}/>
             <Route path = "" component ={Page404} />
         </Switch>
     );

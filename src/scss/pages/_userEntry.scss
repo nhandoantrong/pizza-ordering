@@ -30,6 +30,13 @@
             &:hover{
                 background-color: $primary-color-lighter;
             }
+            &.reset-btn{
+                @include twoRoundedEnd($primary-color,2px);
+                &:hover{
+                    background-color: $primary-color;
+                    color: white;
+                }
+            }
         }
     }
 }

@@ -36,6 +36,15 @@ const userReducer = (state=initialState, action) =>{
                     phone: action.phone
                 }
             }
+
+        case types.CHANGE_NAME:
+            return{
+                ...state,
+                user: {
+                    ...state.user,
+                    name: action.name
+                }
+            }
         case types.LOGOUT:
             return{
                 ...initialState

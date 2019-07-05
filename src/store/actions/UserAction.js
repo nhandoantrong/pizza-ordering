@@ -1,8 +1,8 @@
 import * as types from "../constants/UserConstants";
 import * as errorTypes from "../constants/ErrorConstant";
-import { registerAPI, loginAPI } from "../../services/UserServices";
+import { registerAPI, loginAPI, changeNameAPI } from "../../services/UserServices";
 import { validateUserRegister ,validateUserLogin } from "../../util/validateUser";
-import {fireLoading,closeSwal} from "../../util/AlertFiring"
+import {fireLoading,closeSwal, fireSuccess, fireError} from "../../util/AlertFiring"
 
 
 export const registerToServer = (userRegister) => {
@@ -92,4 +92,27 @@ export const changeDeliveryInfo = (address, phone) =>({
 
 export const logOut = ()=>({
     type: types.LOGOUT
+})
+
+
+// change name and password
+
+export const changeNameOnServer = (name, token)=>{
+    return dispatch => {
+        fireLoading("Changing Name in server")
+        changeNameAPI(name,token)
+            .then(res=>{
+                dispatch(changeName(res.data.name))
+                fireSuccess("Name changed")
+            })
+            .catch (err=>{
+                fireError("Something went wrong")
+            })
+    }
+}
+
+
+const changeName = (name) =>({
+    type: types.CHANGE_NAME,
+    name
 })

@@ -16,7 +16,11 @@
   .logo {
     height: 50px;
     font-family: "Pacifico", cursive !important;
-    font-size: $logo-font-size;
+
+    font-size: $normal-title-size;
+    @media screen and (min-width: 340px) {
+      font-size: $logo-font-size
+    }
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -26,13 +30,25 @@
       margin-right: $closer-distance;
     }
   }
+  .header-icon{
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 50%;
+    @include transitionAll(0.15s);
+    &:hover{
+      background-color: rgba(white,0.5);
+
+    }
+  }
   .shopping-cart-icon{
     position: relative;
     div{
       position: absolute;
       background-color: $primary-color-light;
-      top: 0;
-      right: 0;
+      top: 5px;
+      right: 5px;
       width: 17px;
       height: 17px;
       text-align: center;

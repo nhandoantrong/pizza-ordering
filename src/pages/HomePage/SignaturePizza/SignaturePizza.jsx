@@ -2,9 +2,9 @@ import React from 'react';
 import "./SignaturePizza.scss"
 import Slider from "react-slick"
 import PizzaItem from '../../../components/PizzaItem/PizzaItem';
-import {toggleModal} from "../../../store/actions/InfoModalAction";
-import {connect} from "react-redux";
-import {getBestSellerFromServer} from "../../../store/actions/BestSellerAction"
+import { toggleModal } from "../../../store/actions/InfoModalAction";
+import { connect } from "react-redux";
+import { getBestSellerFromServer } from "../../../store/actions/BestSellerAction"
 
 const SignaturePizza = props => {
     const settings = {
@@ -20,53 +20,58 @@ const SignaturePizza = props => {
             {
                 breakpoint: 1000,
                 settings: {
-                  arrows: false,
-                  centerMode: true,
-                  slidesToShow: 2
+                    arrows: false,
+                    centerMode: true,
+                    slidesToShow: 2
                 }
-              },
+            },
             {
-              breakpoint: 786,
-              settings: {
-                arrows: false,
-                centerMode: true,
-                slidesToShow: 1
-              }
+                breakpoint: 786,
+                settings: {
+                    arrows: false,
+                    centerMode: true,
+                    slidesToShow: 1
+                }
             },
 
-          ]
+        ]
     };
 
     const pizzaArray = props.bestSellerPizzas;
-    if (pizzaArray.length===0){
-        props.getBestSeller()
+    if (pizzaArray.length === 0) {
+        props.getBestSeller();
+
     }
-    const renderPizzas = pizzaArray.map((item,index) =>(
-        <PizzaItem item= {item} key={index} openModal={props.toggleModal}/>
+    const renderPizzas = pizzaArray.map((item, index) => (
+        <PizzaItem item={item} key={index} openModal={props.toggleModal} />
     ))
 
     return (
         <div className="signature-pizza">
             <h1>Signature Pizzas</h1>
-            <Slider {...settings}>
-                {renderPizzas}
 
-            </Slider>
+            {pizzaArray.length === 0 ?
+                <div className="loader"></div>
+                : <Slider {...settings}>
+                    {renderPizzas}
+
+                </Slider>
+            }
         </div>
     );
 };
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     bestSellerPizzas: state.bestSeller.bestSellerPizzas
 })
 
 
-const mapDispatchToProps = dispatch =>({
-    toggleModal: (info) =>{
-        dispatch(toggleModal(true,info));
+const mapDispatchToProps = dispatch => ({
+    toggleModal: (info) => {
+        dispatch(toggleModal(true, info));
     },
-    getBestSeller: () =>{
+    getBestSeller: () => {
         dispatch(getBestSellerFromServer());
     }
 })
-export default connect(mapStateToProps,mapDispatchToProps)(SignaturePizza);
+export default connect(mapStateToProps, mapDispatchToProps)(SignaturePizza);

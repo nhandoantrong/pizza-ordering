@@ -43,7 +43,10 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
                             CONFIRM
                         </button> : null}
                     </div>
-                    : null
+                    : <img src={require("../../assets/img/empty-cart-icon-1.jpg")} 
+                    alt="empty" 
+                    style={{margin: "0 auto", display: "block", cursor:"pointer"}}
+                    onClick={()=>history.push("/menu")}/>
             }
 
         </div>

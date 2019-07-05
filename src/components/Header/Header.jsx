@@ -22,15 +22,15 @@ const Header = ({ orderList, token, logOut }) => {
                 <span>Dev's Pizza</span>
             </Link>
             {token ? <>
-                <Link onClick={closeMenu} to="/shopping-cart" className="shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
+                <Link onClick={closeMenu} to="/shopping-cart" className="header-icon shopping-cart-icon" style={{ marginLeft: "auto", marginRight: "15px" }}>
                     <i className="fas fa-shopping-cart"></i>
                     {orderList.length > 0 ? <div>{orderList.length}</div> : null}
 
                 </Link>
 
-                <div className="user-icon">
+                <Link className="header-icon user-icon" to="/profile">
                     <i className="fas fa-user"></i>
-                </div>
+                </Link>
             </> : null}
 
 
