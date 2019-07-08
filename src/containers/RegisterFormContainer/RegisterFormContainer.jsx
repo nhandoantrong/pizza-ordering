@@ -12,7 +12,8 @@ const RegisterFormContainer = ({
     errors,
     handleSubmit,
     registerError,
-    values
+    values,
+    setFieldValue
 }) => {
 
 
@@ -55,12 +56,12 @@ const RegisterFormContainer = ({
             }} />
             <Recaptcha
                 sitekey="6LdTgqwUAAAAAFOpmKM0LsrIqa-1qM6yLZ4WEU1Y"
-                verifyCallback={(res)=>{
-                    console.log(res)
+                verifyCallback={()=>{
+                    setFieldValue("verified", true)
                 }}
-
-
             />
+            {!values.verified ? <div className="verify-error" style={{color:"#D8000C"}}>{errors.verified}</div>: ""}
+
             <div className="submit-line">
                 <Link to="/login">Already have an account ?</Link>
 
@@ -83,11 +84,11 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(withFormik({
-    mapPropsToValues: () => ({ name: '', email: "", password: "", rePassword: "" }),
+    mapPropsToValues: () => ({ name: '', email: "", password: "", rePassword: "",verified: false }),
 
     // Custom sync validation
     validate: (values, props) => {
-
+        console.log(values);
         const { name, email, password, rePassword } = values;
         const errors = {}
 
@@ -111,6 +112,9 @@ export default connect(mapStateToProps, mapDispatchToProps)(withFormik({
             errors.rePassword = "Password does not match"
         }
 
+        if (!values.verified){
+            errors.verified = "You have to verify"
+        }
 
         return errors
 
