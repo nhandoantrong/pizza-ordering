@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerToServer } from "../../store/actions/UserAction";
 import { userExisted } from "../../util/errorMessageConstant"
-
+import Recaptcha from "react-recaptcha";
 const RegisterFormContainer = ({
     touched,
     errors,
@@ -14,6 +14,7 @@ const RegisterFormContainer = ({
     registerError,
     values
 }) => {
+
 
     if (registerError.message === userExisted && registerError.currentEmail === values.email) {
         errors.email = userExisted;
@@ -52,8 +53,14 @@ const RegisterFormContainer = ({
                     error={errors.rePassword}
                     touched={touched.rePassword} />
             }} />
-            <div className="g-recaptcha" data-sitekey="6LcKgqwUAAAAAG9zWnxLGbRp6hqu4NxLoQFExWhb"></div>
+            <Recaptcha
+                sitekey="6LdTgqwUAAAAAFOpmKM0LsrIqa-1qM6yLZ4WEU1Y"
+                verifyCallback={(res)=>{
+                    console.log(res)
+                }}
 
+
+            />
             <div className="submit-line">
                 <Link to="/login">Already have an account ?</Link>
 
