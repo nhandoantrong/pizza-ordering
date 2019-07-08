@@ -52,6 +52,7 @@ const RegisterFormContainer = ({
                     error={errors.rePassword}
                     touched={touched.rePassword} />
             }} />
+            <div className="g-recaptcha" data-sitekey="6LcKgqwUAAAAAG9zWnxLGbRp6hqu4NxLoQFExWhb"></div>
 
             <div className="submit-line">
                 <Link to="/login">Already have an account ?</Link>
