@@ -46,7 +46,7 @@ const Header = ({ orderList, token, logOut }) => {
                     <Link className="item" to="/menu" onClick={handleToggleMenu}>
                         MENU
                     </Link>
-                    <Link to="/" className="item" onClick={handleToggleMenu}>
+                    <Link to="/promotion" className="item" onClick={handleToggleMenu}>
                         PROMOTION
                     </Link>
 

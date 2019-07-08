@@ -28,10 +28,10 @@ const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
             <div className="liar"></div>
             <h1>Billing Infomation</h1>
             <div className="row">
-                <div className="col-6 cart-info">
+                <div className="col cart-info">
                     <CartListContainer isCanBeModified={false} />
                 </div>
-                <div className="col-6 user-entry delivery-info">
+                <div className="col user-entry delivery-info">
                     <div className="content">
                         <h3>Delivery Info</h3>
                         <DeliveryFormContainer isCanBeModified={false} />

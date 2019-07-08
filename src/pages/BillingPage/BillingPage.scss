@@ -8,6 +8,17 @@
     h1{
         text-align: center;
     }
+    .col{
+        @media screen and (min-width : $small-screen-width) {
+            width: 50%;
+        }
+    }
+    .row{
+        display: block;
+        @media screen and (min-width : $small-screen-width) {
+            display: flex;
+        }
+    }
     .cart-info{
         margin-top: $normal-distance;
         max-height: calc(100vh - 120px);

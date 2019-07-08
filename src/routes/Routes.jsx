@@ -10,6 +10,8 @@ import DeliveryInfoPage from '../pages/DeliveryInfoPage/DeliveryInfoPage';
 import Page404 from '../pages/Page404/Page404';
 import BillingPage from '../pages/BillingPage/BillingPage';
 import ProfilePage from '../pages/ProfilePage/ProfilePage';
+import PromotionPage from '../pages/PromotionPage/PromotionPage';
+import UserPageGuard from '../containers/PageGuards/UserPageGuard';
 
 const CustomerRoute = () => {
     return (
@@ -18,10 +20,11 @@ const CustomerRoute = () => {
             <Route path="/menu" exact component={PizzaMenu} />
             <Route path="/register" exact render = {() => <EntryGuard Component={RegisterPage} />} />
             <Route path = "/login" exact render = {() => <EntryGuard Component={LoginPage} />}/>
-            <Route path = "/shopping-cart" exact component ={ShoppingCartPage} />
-            <Route path ="/delivery-info" exact component = {DeliveryInfoPage}  />
-            <Route path ="/billing" exact component = {BillingPage}  />
-            <Route path ="/profile" exact component = {ProfilePage}/>
+            <Route path = "/shopping-cart" exact  render = {({history}) => <UserPageGuard history={history} Component={ShoppingCartPage} />}/>
+            <Route path ="/delivery-info" exact render = {({history}) => <UserPageGuard history={history} Component={DeliveryInfoPage} />}  />
+            <Route path ="/billing" exact render = {({history}) => <UserPageGuard history={history} Component={BillingPage} />}  />
+            <Route path ="/profile" exact render = {({history}) => <UserPageGuard history={history} Component={ProfilePage} />}/>
+            <Route path="/promotion" exact component={PromotionPage} />
             <Route path = "" component ={Page404} />
         </Switch>
     );
