@@ -47,5 +47,5 @@ export default withFormik({
         props.changeName(values.name);
     },
 
-    displayName: 'BasicForm',
+    displayName: 'ChangeNameForm',
 })(EditName);

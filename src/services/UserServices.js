@@ -12,3 +12,7 @@ export const loginAPI = (userLogin) => {
 export const changeNameAPI = (name, token) => {
     return Axios.put(commonURL + "customers/updateName", { name }, { ...headers(token) })
 }
+
+export const changePasswordAPI = (passwordBag,token) =>{
+    return Axios.put(commonURL + "customers/updatePassword",{...passwordBag},{...headers(token)});
+}

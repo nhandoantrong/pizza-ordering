@@ -59,6 +59,12 @@
           font-size: $normal-font-size;
         }
       }
+      
+    }
+
+    .submit-button-group{
+      display: flex;
+      justify-content: space-between;
       button {
         @include twoRoundedEnd($primary-color-lighter, 2px);
         font-weight: $bold-weight;
@@ -68,6 +74,13 @@
         @include transitionAll(0.15s);
         &:hover {
           background-color: $primary-color-lighter;
+        }
+        &.buy-now{
+          border-color: $primary-color;
+          &:hover {
+            background-color: $primary-color;
+            color: white;
+          }
         }
       }
     }

@@ -5,5 +5,5 @@ export const getCategoriesAPI = () =>{
 }
 
 export const getBestSellerAPI = () =>{
-    return Axios.get(commonURL+"categories/bestseller" )
+    return Axios.get(commonURL+"products/bestseller" )
 }

@@ -22,9 +22,10 @@
     padding-top: 5px;
     h3 {
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: $title-font-size;
       padding: 5px;
       height: 2.8rem;
+      padding-top: $close-distance;
     }
     .rating{
       margin-bottom: $close-distance;

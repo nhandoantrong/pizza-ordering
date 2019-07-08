@@ -91,7 +91,14 @@ class PopupPizzaInfo extends Component {
 
     renderAttribute = (attr) => {
         return this.filterByAttribute(attr).map(choice => {
-            return <option value={choice} key={choice}>{choice}</option>
+            return <label htmlFor={choice} className="radio" key={choice}>
+                <input type="radio" name={attr} id={choice}
+                    className="hidden"
+                    checked={this.state.size === choice || this.state.type === choice}
+                    onChange={this.handleOnChange}
+                    value={choice} />
+                <span className="label"></span>{choice}
+            </label>
         })
     }
 
@@ -119,18 +126,17 @@ class PopupPizzaInfo extends Component {
                             <p>{info.detail}</p>
                             <div className="choice">
                                 <div className="selection">
-                                    <label htmlFor="size">Size: </label>
-                                    <select name="size" id="size" value={this.state.size} onChange={this.handleOnChange} >
+                                    <div className="row" style={{ alignItems: "center" }}>
+                                        <div>Size: </div>
                                         {this.renderAttribute("size")}
-                                    </select>
+                                    </div>
                                 </div>
 
                                 <div className="selection">
-                                    <label htmlFor="type">Crust Type:</label>
-                                    <select name="type" id="type" value={this.state.type} onChange={this.handleOnChange}>
+                                    <div className="row" style={{ alignItems: "center" }}>
+                                        <div>Crust type: </div>
                                         {this.renderAttribute("type")}
-
-                                    </select>
+                                    </div>
                                 </div>
                             </div>
                             <ToppingList toppingList={toppings}
@@ -139,9 +145,28 @@ class PopupPizzaInfo extends Component {
                             />
                             <div className="submit-line">
                                 <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity} />
-                                <div className="price">
+                                <div className="price" style={{ marginLeft: "10px" }}>
                                     <h3>Total price: ${this.state.quantity * (this.state.choice.price + toppingPrice)}</h3>
                                 </div>
+
+                            </div>
+                            <div className="submit-button-group">
+                                <button className="buy-now" onClick={() => {
+                                    this.props.addToCart({
+                                        product:
+                                        {
+                                            ...this.state.choice,
+                                            name: info.name,
+                                            picture: info.picture,
+                                            _id: info._id
+                                        },
+                                        toppingList: [...this.state.toppingChoices],
+                                        quantity: this.state.quantity
+                                    })
+                                    this.props.closeModal();
+                                    this.props.history.push("/shopping-cart")
+                                }}>BUY NOW</button>
+
                                 <button onClick={() => {
                                     this.props.addToCart({
                                         product:
@@ -149,7 +174,7 @@ class PopupPizzaInfo extends Component {
                                             ...this.state.choice,
                                             name: info.name,
                                             picture: info.picture,
-                                            _id : info._id
+                                            _id: info._id
                                         },
                                         toppingList: [...this.state.toppingChoices],
                                         quantity: this.state.quantity
@@ -157,6 +182,7 @@ class PopupPizzaInfo extends Component {
                                     this.props.closeModal();
                                 }}>ADD TO CART</button>
                             </div>
+
                         </div>
                     </div>
                 </div>

@@ -9,3 +9,11 @@ export const OrderAPI = (order, token) =>{
         }
     })
 }
+
+export const getOrderAPI = (token) =>{
+    return Axios.get(commonURL + "orders",{
+        headers:{
+            "Authorization" : token
+        }
+    })
+}

@@ -15,10 +15,12 @@ export const registerToServer = (userRegister) => {
                     if (res.data.err){
                         throw res.data.err;
                     }
+                    console.log(res.data);
                     const token = res.data[0].token;
-                    const email = res.data[1].email;
-                    const name = res.data[2].name;
-                    dispatch(login(token,email,name))
+                    const email = res.data[2].email;
+                    const name = res.data[1].name;
+                    console.log(token,email,name)
+                    dispatch(register(token,email,name))
 
                 })
                 .catch(err=>{
@@ -28,9 +30,11 @@ export const registerToServer = (userRegister) => {
         else dispatch(register(""));
     }
 }
-const register = (token) => ({
+const register = (token,email,name) => ({
     type: types.REGISTER,
-    token
+    token,
+    email,
+    name
 })
 const registerError = (err,email) =>({
     type : errorTypes.REGISTER_ERROR,

@@ -22,7 +22,8 @@ const InfoModalContainer = props => {
             isOpen={props.infoModal.isOpen}
             addToCart={addToCart}
             closeModal={props.closeModal}
-            info={props.infoModal.info} />
+            info={props.infoModal.info}
+            history={props.history} />
     );
 };
 
