@@ -16,6 +16,5 @@ const props ={
 test('renders Cart Item without crashing', () => {
     
     const cartItem = render(<CartItem {...props}/>);
-    console.log(cartItem)
     expect(cartItem).toMatchSnapshot();
 });

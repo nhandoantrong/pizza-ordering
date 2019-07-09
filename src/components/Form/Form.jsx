@@ -86,6 +86,5 @@ export default withFormik({
         return error
     },
     handleSubmit: values => {
-        console.log(values)
     }
 })(Form);
