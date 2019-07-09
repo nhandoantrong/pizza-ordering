@@ -18,7 +18,7 @@ export const checkoutOnServer =(order, token) =>{
         OrderAPI(order,token)
             .then(res=>{
                 if (res.data._id){
-                    fireSuccess("Ordered Sucessfully");
+                    fireSuccess("Your Order is getting processed");
                     dispatch(checkout());
                 }
                 else throw res.data;
