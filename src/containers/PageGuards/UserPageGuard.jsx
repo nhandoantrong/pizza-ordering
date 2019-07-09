@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 const UserPageGuard = ({user, Component, history}) => {
     return (
         <>
-            {user.token ? <Component history={history}/> : <Redirect to="/" />}
+            {user.token ? <Component history={history}/> : <Redirect to="/login" />}
         </>
     );
 };
