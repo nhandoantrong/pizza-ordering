@@ -123,18 +123,18 @@ class PopupPizzaInfo extends Component {
                             <img src={info.picture} alt="" />
                         </div>
                         <div className="info-content">
-                            <p>{info.detail}</p>
+                            <p> <b>Description:</b> {info.detail}</p>
                             <div className="choice">
                                 <div className="selection">
                                     <div className="row" style={{ alignItems: "center" }}>
-                                        <div>Size: </div>
+                                        <div style={{ fontWeight: "700" }}>Size: </div>
                                         {this.renderAttribute("size")}
                                     </div>
                                 </div>
 
                                 <div className="selection">
                                     <div className="row" style={{ alignItems: "center" }}>
-                                        <div>Crust type: </div>
+                                        <div style={{ fontWeight: "700" }}>Crust: </div>
                                         {this.renderAttribute("type")}
                                     </div>
                                 </div>

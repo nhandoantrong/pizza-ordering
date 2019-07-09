@@ -88,7 +88,6 @@ export default connect(mapStateToProps, mapDispatchToProps)(withFormik({
 
     // Custom sync validation
     validate: (values, props) => {
-        console.log(values);
         const { name, email, password, rePassword } = values;
         const errors = {}
 

@@ -12,7 +12,8 @@ const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
         phone: user.phone,
         address: user.address,
         totalPrice,
-        orderDetail: reducedList
+        orderDetail: reducedList,
+        status : "Processing"
     }
     if (orderList.length===0){
         return <Redirect to="/menu"/>

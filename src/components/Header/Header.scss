@@ -81,7 +81,8 @@
       font-size: 1.2rem;
       cursor: pointer;
       position: relative;
-
+      background-color: unset;
+      color: white;
       i {
         @include transitionAll(0.15s);
         opacity: 0;

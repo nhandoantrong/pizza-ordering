@@ -22,7 +22,7 @@ const ToppingList = ({ toppingList, addTopping, removeTopping }) => {
                 <span className="checkmark"></span>
             </label>
             <div style={{ position: "relative" }}>
-                <label htmlFor={topping._id} className="tooltip">{topping.name} ${topping.price}</label>
+                <label htmlFor={topping._id} className="tooltip"><b>{topping.name}</b>  ${topping.price}</label>
                 <span className="tooltiptext" style={{ backgroundImage: `url('${topping.picture}')` }}>
 
                 </span>

@@ -16,7 +16,9 @@
     border-right: 1px $grey-border-color solid;
     border-left: 1px $grey-border-color solid;
     padding-top: $normal-distance;
-    height: calc(100vh - 110px);
+    height: calc(100vh - 50px);
+    position: sticky;
+    top: 0;
     display: none;
     @media screen and (min-width: $small-screen-width) {
          display: block;

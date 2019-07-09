@@ -8,22 +8,26 @@
     h1{
         text-align: center;
     }
-    .col{
-        @media screen and (min-width : $small-screen-width) {
-            width: 50%;
-        }
-    }
-    .row{
+    
+    &>.row{
         display: block;
         @media screen and (min-width : $small-screen-width) {
             display: flex;
         }
+        &>.col{
+            @media screen and (min-width : $small-screen-width) {
+                width: 50%;
+            }
+        }
     }
     .cart-info{
         margin-top: $normal-distance;
-        max-height: calc(100vh - 120px);
-        overflow: auto;
         padding: $closer-distance;
+        @media screen and (min-width : $small-screen-width) {
+            overflow: auto;
+            max-height: calc(100vh - 120px);
+
+        }
     }
     .delivery-info{
         min-height: unset;

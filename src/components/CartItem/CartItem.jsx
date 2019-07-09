@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import "./CartItem.scss"
 import MediaQuery from "react-responsive";
-import { smallScreenWidth } from "../../util/screenWidthConstant"
+import { smallScreenWidth,mediumScreenWidth } from "../../util/screenWidthConstant"
 import QuantityChange from '../QuantityChange/QuantityChange';
-const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanBeModify = true, changeQuantity }) => {
+export const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanBeModify = true, changeQuantity }) => {
 
     const toppingPrice = toppingList.reduce((previousValue, topping) => {
         return previousValue + topping.price
@@ -28,16 +28,21 @@ const CartItem = ({ product, toppingList, quantity, orderID, deleteOrder, isCanB
                 {toppingList.length > 0 ? <div className="toppings">
                     <h4>Toppings:</h4>
 
-                    <div className="row">
+                    <div className="row" >
                         {toppingList.map((topping) => {
                             return <Fragment key={topping._id}>
-                                <MediaQuery minDeviceWidth={smallScreenWidth}>
-                                    <div className="col-3" key={topping._id}>
+                                <MediaQuery maxDeviceWidth={smallScreenWidth - 1}>
+                                    <div className="col-6" style={{ marginBottom: "10px" }} key={topping._id}>
                                         {topping.name}
                                     </div>
                                 </MediaQuery>
-                                <MediaQuery maxDeviceWidth={smallScreenWidth + 1}>
-                                    <div className="col-6" key={topping._id}>
+                                <MediaQuery minDeviceWidth={smallScreenWidth} maxDeviceWidth={mediumScreenWidth-1}>
+                                    <div className="col-4" style={{ marginBottom: "10px" }} key={topping._id}>
+                                        {topping.name}
+                                    </div>
+                                </MediaQuery>
+                                <MediaQuery  minDeviceWidth={mediumScreenWidth}>
+                                    <div className="col-3" style={{ marginBottom: "10px" }} key={topping._id}>
                                         {topping.name}
                                     </div>
                                 </MediaQuery>

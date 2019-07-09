@@ -7,11 +7,16 @@ import { connect } from "react-redux";
 import { getBestSellerFromServer } from "../../../store/actions/BestSellerAction"
 
 const SignaturePizza = props => {
+    const pizzaArray = props.bestSellerPizzas;
+    if (pizzaArray.length === 0) {
+        props.getBestSeller();
+
+    }
     const settings = {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: Math.min(3, pizzaArray.length),
         slidesToScroll: 1,
         arrows: false,
         autoplay: true,
@@ -37,11 +42,7 @@ const SignaturePizza = props => {
         ]
     };
 
-    const pizzaArray = props.bestSellerPizzas;
-    if (pizzaArray.length === 0) {
-        props.getBestSeller();
-
-    }
+   
     const renderPizzas = pizzaArray.map((item, index) => (
         <PizzaItem item={item} key={index} openModal={props.toggleModal} />
     ))

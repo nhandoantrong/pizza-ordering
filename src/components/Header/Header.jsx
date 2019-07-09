@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import "./Header.scss";
 import { connect } from "react-redux";
-import { logOut } from "../../store/actions/UserAction"
+import { logOut } from "../../store/actions/UserAction";
+import Navigator from './Navigator';
 
 const Header = ({ orderList, token, logOut }) => {
     const [showMenu, setShowMenu] = useState(false);
@@ -11,6 +12,7 @@ const Header = ({ orderList, token, logOut }) => {
     const handleToggleMenu = () => {
         setShowMenu(!showMenu);
     }
+    
     const closeMenu = () => {
         setShowMenu(false);
     }
@@ -32,45 +34,15 @@ const Header = ({ orderList, token, logOut }) => {
                     <i className="fas fa-user"></i>
                 </Link>
             </> : null}
+                
+                <Navigator handleToggleMenu={handleToggleMenu} 
+                showMenu={showMenu} 
+                token={token}
+                logOut={logOut}
+                closeMenu={closeMenu}
+                />
 
-
-            <div className="navigator">
-                <div className={`icon ${showMenu ? "active" : ""}`} onClick={handleToggleMenu}>
-                    <i className={`fas fa-bars ${!showMenu ? "active" : ""}`}></i>
-                    <i className={`fas fa-times ${showMenu ? "active" : ""}`}></i>
-                </div>
-                <div className={`content ${showMenu ? "active" : ""}`}>
-                    <Link className="item" to="/" onClick={handleToggleMenu}>
-                        HOME
-                    </Link>
-                    <Link className="item" to="/menu" onClick={handleToggleMenu}>
-                        MENU
-                    </Link>
-                    <Link to="/promotion" className="item" onClick={handleToggleMenu}>
-                        PROMOTION
-                    </Link>
-
-                    {!token ? <>
-                        <Link to="/login" className="item" onClick={handleToggleMenu}>
-                            LOGIN
-                        </Link>
-                        <Link to="/register" className="item" onClick={handleToggleMenu}>
-                            REGISTER
-                        </Link>
-                    </> :
-                        <Link to="/" className="item"
-                            onClick={() => {
-                                handleToggleMenu();
-                                logOut();
-                            }}>
-                            SIGN OUT
-                        </Link>
-
-                    }
-
-                </div>
-            </div>
-        </header>
+              </header>
     );
 };
 

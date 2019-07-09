@@ -2,7 +2,7 @@ import * as types from "../constants/UserConstants";
 import * as errorTypes from "../constants/ErrorConstant";
 import { registerAPI, loginAPI, changeNameAPI } from "../../services/UserServices";
 import { validateUserRegister ,validateUserLogin } from "../../util/validateUser";
-import {fireLoading,closeSwal, fireSuccess, fireError} from "../../util/AlertFiring"
+import {fireLoading, fireSuccess, fireError} from "../../util/AlertFiring"
 
 
 export const registerToServer = (userRegister) => {
@@ -11,16 +11,15 @@ export const registerToServer = (userRegister) => {
             fireLoading("Checking On Server")
             registerAPI(userRegister)
                 .then(res => {
-                    closeSwal();
                     if (res.data.err){
                         throw res.data.err;
                     }
-                    console.log(res.data);
                     const token = res.data[0].token;
                     const email = res.data[2].email;
                     const name = res.data[1].name;
-                    console.log(token,email,name)
                     dispatch(register(token,email,name))
+                    fireSuccess("Registered Successfully");
+
 
                 })
                 .catch(err=>{
@@ -51,7 +50,7 @@ export const loginToServer = (userLogin) =>{
             fireLoading("Checking On Server");
             loginAPI(userLogin)
                 .then(res =>{
-                    closeSwal();
+
                     if (res.data.err){
                         throw res.data.err;
                     }
@@ -59,6 +58,8 @@ export const loginToServer = (userLogin) =>{
                     const email = res.data[1].email;
                     const name = res.data[2].name;
                     dispatch(login(token,email,name))
+                    fireSuccess("Logged In Successfully");
+
                 })
                 .catch(err=>{
                     dispatch(loginError(err,userLogin.email, userLogin.password))
