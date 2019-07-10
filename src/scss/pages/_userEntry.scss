@@ -21,6 +21,10 @@
         a{
             padding-left: $closer-distance;
             font-size: 0.75rem;
+            color: blue;
+            &:hover{
+                text-decoration: underline;
+            }
         }
         button{
             @include twoRoundedEnd($primary-color-lighter,2px);

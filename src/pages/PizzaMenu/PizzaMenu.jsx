@@ -62,7 +62,7 @@ class PizzaMenu extends Component {
             <div className="pizza-menu">
                 <div className="liar"></div>
                 <div className="container">
-                    <h1>Pizza Menu</h1>
+                    <h1>Pizza Products</h1>
                     <div className="group-type">
                         {this.renderCategoryName()}
                     </div>

@@ -4,25 +4,49 @@ import InputGroup from '../../components/InputGroup/InputGroup';
 import { numberRegex } from "../../util/regex"
 import { changeDeliveryInfo } from "../../store/actions/UserAction"
 import { connect } from "react-redux";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import { getCurrentAddress } from "./GetCurrentAddress";
+import "./DeliveryFormContainer.scss"
 
 const DeliveryFormContainer = ({
     touched,
     errors,
     handleSubmit,
-    isCanBeModified = false
+    isCanBeModified = false,
+    setFieldValue
 }) => {
+    const getAddress = () => {
+        getCurrentAddress().then(res => {
+            setFieldValue("address", res[0].formatted_address)
+        });
+    }
+
+
     return (
         <form onSubmit={handleSubmit}>
-            <Field name="address" render={({ field }) => (
-                <InputGroup field={field}
-                    type="text"
-                    labelContent="Address"
-                    touched={touched.address}
-                    error={errors.address}
-                    disabled={!isCanBeModified}
-                />
-            )} />
+            {isCanBeModified ? <div className="address-field">
+                <Field name="address" render={({ field }) => (
+                    <InputGroup field={field}
+                        type="text"
+                        labelContent="Address"
+                        touched={touched.address}
+                        error={errors.address}
+                        disabled={!isCanBeModified}
+                    />
+                )} />
+                <button onClick={getAddress} type="button"><i className="fas fa-map-marked-alt"></i></button>
+            </div>
+                : <Field name="address" render={({ field }) => (
+                    <InputGroup field={field}
+                        type="text"
+                        labelContent="Address"
+                        touched={touched.address}
+                        error={errors.address}
+                        disabled={!isCanBeModified}
+                    />
+                )} />}
+
+
 
             <Field name="phone" render={({ field }) => (
                 <InputGroup field={field}

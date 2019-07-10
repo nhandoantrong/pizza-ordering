@@ -66,7 +66,7 @@ const CheckOrders = ({ token }) => {
                                     {order.orderDetail.map((detail, index) => {
                                         const id = detail.productID;
                                         const product = productList.find(product => product._id === id);
-                                        return <li key={index}><span>- {product.name}</span>
+                                        return <li key={index}><span >- {product.name}</span>
                                             <div className="tool-tip">
                                                 <img src={product.picture} alt="product" />
                                                 <div className="name">{product.name}</div>
@@ -87,7 +87,7 @@ const CheckOrders = ({ token }) => {
                                                             }
                                                         </div>
                                                     </div>
-                                                    :null
+                                                    : null
                                                 }
 
                                             </div>
@@ -98,7 +98,7 @@ const CheckOrders = ({ token }) => {
 
                             <div style={{ fontWeight: "700" }}>Total Price: ${order.totalPrice}  </div>
                         </div>
-                    }) : <img src={require("../../../assets/img/empty.svg")} alt="empty" /> : null
+                    }) : <img src={require("../../../assets/img/empty.svg")} style={{ maxWidth: "100%" }} alt="empty" /> : null
                 }
             </div>
 

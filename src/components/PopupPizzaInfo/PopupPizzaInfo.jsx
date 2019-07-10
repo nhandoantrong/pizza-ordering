@@ -114,7 +114,10 @@ class PopupPizzaInfo extends Component {
                 center={true}
                 blockScroll={false}
                 onClose={() => { this.props.closeModal() }}
-                styles={{ closeButton: { cursor: "pointer" } }}
+                styles={{ 
+                    closeButton: { cursor: "pointer" },
+                    modal:{borderRadius: "5px"} 
+                }}
             >
                 <div className="modal-content">
                     <h1>{info.name}</h1>
@@ -145,7 +148,7 @@ class PopupPizzaInfo extends Component {
                             />
                             <div className="submit-line">
                                 <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity} />
-                                <div className="price" style={{ marginLeft: "10px" }}>
+                                <div className="price" style={{ marginLeft: "10px",marginBottom:"10px"}}>
                                     <h3>Total price: ${this.state.quantity * (this.state.choice.price + toppingPrice)}</h3>
                                 </div>
 

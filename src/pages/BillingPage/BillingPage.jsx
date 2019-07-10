@@ -55,7 +55,7 @@ const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
                         </div>
                     </div>
                     <div className="submit-line"> 
-                        <div>
+                        <div className="comeback">
                         <Link to="/delivery-info">Change your infomation again?</Link> <br />
                         <Link to="/shopping-cart">Change your cart again?</Link>
 

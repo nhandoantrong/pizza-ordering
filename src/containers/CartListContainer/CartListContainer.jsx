@@ -1,10 +1,10 @@
 import React from 'react';
 import CartItem from '../../components/CartItem/CartItem';
 import { connect } from 'react-redux'
-import { deleteOrder,changeQuantity } from "../../store/actions/OrderAction";
+import { deleteOrder, changeQuantity } from "../../store/actions/OrderAction";
 import "./CartListContainer.scss";
-import {Link} from "react-router-dom"
-const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = true ,changeQuantity }) => {
+import { Link } from "react-router-dom"
+const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = true, changeQuantity }) => {
 
     const renderOrderList = orderList.map((order, index) => (
         <CartItem product={order.product}
@@ -31,7 +31,7 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
             {
                 calculateTotalPrice > 0 ?
                     <div className="confirmation">
-                        {isCanBeModified ? <Link to = "/menu">
+                        {isCanBeModified ? <Link to="/menu">
                             Wanna buy more?
                         </Link> : null
                         }
@@ -43,10 +43,10 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
                             CONFIRM
                         </button> : null}
                     </div>
-                    : <img src={require("../../assets/img/empty-cart-icon-1.jpg")} 
-                    alt="empty" 
-                    style={{margin: "0 auto", display: "block", cursor:"pointer"}}
-                    onClick={()=>history.push("/menu")}/>
+                    : <img src={require("../../assets/img/empty-cart-icon-1.jpg")}
+                        alt="empty"
+                        style={{ margin: "0 auto", display: "block", cursor: "pointer", maxWidth: "100%" }}
+                        onClick={() => history.push("/menu")} />
             }
 
         </div>
@@ -61,8 +61,8 @@ const mapDispatchToProps = dispatch => ({
     deleteOrder: (orderID) => {
         dispatch(deleteOrder(orderID))
     },
-    changeQuantity: (id, amount) =>{
-        dispatch(changeQuantity(id,amount))
+    changeQuantity: (id, amount) => {
+        dispatch(changeQuantity(id, amount))
     }
 })
 

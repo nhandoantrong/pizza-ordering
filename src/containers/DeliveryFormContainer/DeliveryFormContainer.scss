@@ -1,0 +1,24 @@
+@import "../../scss/abstract/variable";
+
+.address-field{
+    position: relative;
+    button{
+        position: absolute;
+        top: 2px;
+        right: 2px;
+        height: 38px;
+        width: 30px;
+        display: block;
+        cursor: pointer;
+        background-color: unset;
+        border: unset;
+        &:hover{
+            background-color: $primary-color;
+            color: white;
+            transition: all 0.15s ease;
+        }
+    }
+    input{
+        padding-right: 35px;
+    }
+}

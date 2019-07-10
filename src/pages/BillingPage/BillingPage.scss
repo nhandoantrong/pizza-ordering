@@ -41,8 +41,12 @@
             margin-top: $normal-distance;
             margin-bottom: $normal-distance;
             align-items: center;
+            flex-wrap: wrap;
             .total-price{
                 margin: 0;
+            }
+            .comeback{
+                width: 100%;
             }
         }
     }
@@ -59,4 +63,5 @@
             }
         }
     }
+
 }
