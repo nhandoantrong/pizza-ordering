@@ -2,7 +2,7 @@ import * as types from "../constants/UserConstants";
 import * as errorTypes from "../constants/ErrorConstant";
 import { registerAPI, loginAPI, changeNameAPI } from "../../services/UserServices";
 import { validateUserRegister ,validateUserLogin } from "../../util/validateUser";
-import {fireLoading, fireSuccess, fireError} from "../../util/AlertFiring"
+import {fireLoading, fireSuccess, fireError,closeSwal} from "../../util/AlertFiring"
 
 
 export const registerToServer = (userRegister) => {
@@ -23,6 +23,7 @@ export const registerToServer = (userRegister) => {
 
                 })
                 .catch(err=>{
+                    closeSwal();
                     dispatch(registerError(err,userRegister.email))
                 })
         }
@@ -62,6 +63,7 @@ export const loginToServer = (userLogin) =>{
 
                 })
                 .catch(err=>{
+                    closeSwal();
                     dispatch(loginError(err,userLogin.email, userLogin.password))
                 })
         }

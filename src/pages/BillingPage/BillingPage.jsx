@@ -54,8 +54,13 @@ const BillingPage = ({ totalPrice, orderList, user, checkout, token }) => {
                             </div>
                         </div>
                     </div>
-                    <div className="submit-line">
-                        <Link to="/delivery-info">Change your infomation again?</Link>
+                    <div className="submit-line"> 
+                        <div>
+                        <Link to="/delivery-info">Change your infomation again?</Link> <br />
+                        <Link to="/shopping-cart">Change your cart again?</Link>
+
+
+                        </div>
 
                         <h3 className="total-price">Total: ${totalPrice}</h3>
                         <button onClick={() => {

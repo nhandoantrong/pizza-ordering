@@ -36,7 +36,7 @@ const CartListContainer = ({ orderList, deleteOrder, history, isCanBeModified = 
                         </Link> : null
                         }
                         {isCanBeModified ? <h3 className="total-price">
-                            Total price : {calculateTotalPrice}
+                            Total price : ${calculateTotalPrice}
                         </h3> : null
                         }
                         {isCanBeModified ? <button className="confirm" onClick={() => { history.push("/delivery-info") }}>
