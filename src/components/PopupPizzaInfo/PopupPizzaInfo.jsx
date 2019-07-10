@@ -148,7 +148,7 @@ class PopupPizzaInfo extends Component {
                             />
                             <div className="submit-line">
                                 <QuantityChange quantity={this.state.quantity} changeQuantity={this.changeQuantity} />
-                                <div className="price" style={{ marginLeft: "10px",marginBottom:"10px"}}>
+                                <div className="price" style={{ marginLeft: "10px"}}>
                                     <h3>Total price: ${this.state.quantity * (this.state.choice.price + toppingPrice)}</h3>
                                 </div>
 

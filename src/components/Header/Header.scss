@@ -18,6 +18,9 @@
     font-family: "Pacifico", cursive !important;
 
     font-size: $normal-title-size;
+    span{
+      white-space: nowrap;
+    }
     @media screen and (min-width: $small-screen-width) {
       font-size: $logo-font-size
     }

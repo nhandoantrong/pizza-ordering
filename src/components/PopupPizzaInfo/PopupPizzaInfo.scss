@@ -53,8 +53,11 @@
         flex-direction: row;
 
       }
+      margin-bottom: $close-distance;
       .price {
         padding-right: $close-distance;
+        display: flex;
+        align-items: center;
         h3 {
           font-size: $normal-font-size;
         }
