@@ -66,7 +66,7 @@ const CheckOrders = ({ token }) => {
                                     {order.orderDetail.map((detail, index) => {
                                         const id = detail.productID;
                                         const product = productList.find(product => product._id === id);
-                                        return <li key={index}><span >- {product.name}</span>
+                                        return <li key={index}><span >- {product.name} x{detail.quantity}</span>
                                             <div className="tool-tip">
                                                 <img src={product.picture} alt="product" />
                                                 <div className="name">{product.name}</div>
