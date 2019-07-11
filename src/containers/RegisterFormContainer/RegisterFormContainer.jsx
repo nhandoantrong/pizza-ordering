@@ -18,7 +18,7 @@ const RegisterFormContainer = ({
 
 
     if (registerError.message === userExisted && registerError.currentEmail === values.email) {
-        errors.email = userExisted;
+        errors.email = "Email is unavailable";
     }
     return (
         <form onSubmit={handleSubmit}>

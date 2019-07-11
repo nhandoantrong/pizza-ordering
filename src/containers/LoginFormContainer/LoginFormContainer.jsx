@@ -15,10 +15,10 @@ const LoginFormContainer = ({
 
 }) => {
     if (loginErr.message === wrongPassword && values.password === loginErr.currentPassword &&values.email === loginErr.currentEmail) {
-        errors.password = wrongPassword;
+        errors.password = "Password is not correct";
     }
     else if (loginErr.message === wrongEmail && values.email === loginErr.currentEmail  && values.password === loginErr.currentPassword) {
-        errors.email = wrongEmail;
+        errors.email = "Email does not exist";
     }
     return (
         <form onSubmit={handleSubmit}>
